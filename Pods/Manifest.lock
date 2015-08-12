@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (2.0.0-beta.1)
+  - PocketAPI (1.0.3)
+
+DEPENDENCIES:
+  - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: git@github.com:Alamofire/Alamofire.git
+  PocketAPI:
+    :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 9a1e321cf0a345b32142394446fa1a7e08cf6942
+    :git: git@github.com:Alamofire/Alamofire.git
+  PocketAPI:
+    :commit: 47ffff591a02f780f1928e3fba10e0f7f68cf132
+    :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
+
+SPEC CHECKSUMS:
+  Alamofire: 96feccc1e48a735edb92395cf023ba4ed52bdb45
+  PocketAPI: f65f80eee2b05d28aeecf711b0f5b87ee2be3e28
+
+COCOAPODS: 0.38.2

@@ -1,15 +1,17 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+platform :ios, '8.0'
+use_frameworks!
 
-target 'Pokebu' do
+pod 'Alamofire', git: 'git@github.com:Alamofire/Alamofire.git', branch: 'swift-2.0'
+pod 'PocketAPI', git: 'git@github.com:Pocket/Pocket-ObjC-SDK.git'
 
-end
-
-target 'PokebuTests' do
-
-end
-
-target 'PokebuUITests' do
-
-end
-
+# target 'Pokebu' do
+#
+# end
+#
+# target 'PokebuTests' do
+#
+# end
+#
+# target 'PokebuUITests' do
+#
+# end
