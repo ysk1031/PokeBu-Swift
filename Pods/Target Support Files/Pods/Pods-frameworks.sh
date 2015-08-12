@@ -53,9 +53,11 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/Keys.framework'
   install_framework 'Pods/PocketAPI.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/Keys.framework'
   install_framework 'Pods/PocketAPI.framework'
 fi

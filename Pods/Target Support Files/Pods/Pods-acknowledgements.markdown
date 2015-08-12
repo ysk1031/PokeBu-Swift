@@ -24,6 +24,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## Keys
+
+MIT LICENSE Found in the repo
+
 ## PocketAPI
 
 Copyright (c) 2012-2014 Read It Later, Inc.

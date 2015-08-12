@@ -34,3 +34,7 @@ DerivedData
 # Carthage/Checkouts
 
 Carthage/Build
+
+
+.DS_Store
+Pods/CocoaPodsKeys
