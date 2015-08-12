@@ -26,6 +26,8 @@
 // If you don't need tight control over network requests, just use the simple API.
 // Note: May not behave predictably if recoverable errors are encountered.
 
+#import "PocketAPI.h"
+
 @interface PocketAPI (NSOperations)
 
 -(NSOperation *)saveOperationWithURL:(NSURL *)url

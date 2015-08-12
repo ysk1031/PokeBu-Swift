@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PocketAPI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
