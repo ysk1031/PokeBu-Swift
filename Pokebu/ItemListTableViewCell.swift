@@ -9,6 +9,9 @@
 import UIKit
 
 class ItemListTableViewCell: UITableViewCell {
+    @IBOutlet weak var favicon: UIImageView!
+    @IBOutlet weak var itemTitle: UILabel!
+    @IBOutlet weak var urlDomain: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

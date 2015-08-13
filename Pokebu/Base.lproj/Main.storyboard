@@ -59,6 +59,11 @@
                                                 <constraint firstItem="v5J-35-zkp" firstAttribute="leading" secondItem="rRy-de-0B7" secondAttribute="leading" constant="10" id="zEA-5U-Zri"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favicon" destination="v5J-35-zkp" id="Geu-aa-Jb2"/>
+                                            <outlet property="itemTitle" destination="1xF-gW-kDF" id="yVI-w2-VIM"/>
+                                            <outlet property="urlDomain" destination="ZRb-Hn-xPE" id="HeV-d1-r7E"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
