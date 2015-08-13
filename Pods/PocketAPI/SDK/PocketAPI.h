@@ -60,6 +60,7 @@
 @property (nonatomic, retain) NSString *URLScheme; // if you do not set this, it is derived from your consumer key
 
 @property (nonatomic, copy, readonly) NSString *username;
+@property (nonatomic, copy, readonly) NSString *pkt_getToken;
 @property (nonatomic, assign, readonly, getter=isLoggedIn) BOOL loggedIn;
 
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
