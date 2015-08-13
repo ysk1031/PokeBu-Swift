@@ -2,11 +2,13 @@ PODS:
   - Alamofire (2.0.0-beta.1)
   - Keys (1.0.0)
   - PocketAPI (1.0.3)
+  - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
   - Keys (from `Pods/CocoaPodsKeys`)
   - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
+  - SwiftyJSON
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -29,5 +31,6 @@ SPEC CHECKSUMS:
   Alamofire: 96feccc1e48a735edb92395cf023ba4ed52bdb45
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   PocketAPI: f65f80eee2b05d28aeecf711b0f5b87ee2be3e28
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2
