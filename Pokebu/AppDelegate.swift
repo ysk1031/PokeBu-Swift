@@ -8,6 +8,7 @@
 
 import UIKit
 import PocketAPI
+import Keys
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // PocketのAPIキー設定
+        let pocketSdkConsumerKey = PokebuKeys().pocketSdkConsumerKey()
+        PocketAPI.sharedAPI().consumerKey = pocketSdkConsumerKey
+        
+        // Pocketログイン状態の確認
+        if PocketAPI.sharedAPI().loggedIn {
+        } else {
+            // Pocketログイン
+            PocketAPI.sharedAPI().loginWithHandler { (api, error) in
+                if error != nil {
+                    print("error")
+                }
+            }
+        }
+        
         return true
     }
 
@@ -42,6 +57,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if PocketAPI.sharedAPI().handleOpenURL(url) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
 }
 
