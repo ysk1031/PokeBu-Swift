@@ -55,7 +55,7 @@
                                 <connections>
                                     <outlet property="favicon" destination="SrA-UN-FP3" id="ekv-Tl-N8S"/>
                                     <outlet property="itemTitle" destination="gRc-EU-n27" id="MYr-sl-qas"/>
-                                    <outlet property="urlDomain" destination="rDJ-Bd-h7r" id="hfI-jB-mzM"/>
+                                    <outlet property="urlHost" destination="rDJ-Bd-h7r" id="fmk-w1-BSN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

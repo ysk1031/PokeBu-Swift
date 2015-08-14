@@ -11,9 +11,17 @@ import UIKit
 class ItemListTableViewCell: UITableViewCell {
     @IBOutlet weak var favicon: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
-    @IBOutlet weak var urlDomain: UILabel!
+    @IBOutlet weak var urlHost: UILabel!
     
-    var item: PocketItem?
+    var item: PocketItem? {
+        didSet {
+            if item == nil { return }
+            itemTitle.text = item!.title
+            
+            let nsURL = NSURL(string: item!.url)
+            urlHost.text = nsURL?.host
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,12 +34,4 @@ class ItemListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if item != nil {
-            itemTitle.text = item?.title
-        }
-    }
-
 }
