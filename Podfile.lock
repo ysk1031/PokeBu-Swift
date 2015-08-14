@@ -8,7 +8,7 @@ DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
   - Keys (from `Pods/CocoaPodsKeys`)
   - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
-  - SwiftyJSON
+  - SwiftyJSON (from `git@github.com:SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -18,6 +18,9 @@ EXTERNAL SOURCES:
     :path: Pods/CocoaPodsKeys
   PocketAPI:
     :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
+  SwiftyJSON:
+    :branch: xcode7
+    :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
@@ -26,6 +29,9 @@ CHECKOUT OPTIONS:
   PocketAPI:
     :commit: 47ffff591a02f780f1928e3fba10e0f7f68cf132
     :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
+  SwiftyJSON:
+    :commit: 45ca854ce75948858f65e31fbc58cbf214669250
+    :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 96feccc1e48a735edb92395cf023ba4ed52bdb45
