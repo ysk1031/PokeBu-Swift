@@ -10,18 +10,20 @@ import Foundation
 
 class PocketItem {
     let id: Int
-    let title: String?
+    let title: String
     let url: String
     let excerpt: String?
     let imgSrc: String?
     let timestamp: Int
+    let sortId: Int
     
-    init(id: Int, title: String?, url: String, excerpt: String?, imgSrc: String?, timestamp: Int) {
+    init(id: Int, title: String, url: String, excerpt: String?, imgSrc: String?, timestamp: Int, sortId: Int) {
         self.id = id
         self.title = title
         self.url = url
         self.excerpt = excerpt
         self.imgSrc = imgSrc
         self.timestamp = timestamp
+        self.sortId = sortId
     }
 }
