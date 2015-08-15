@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ItemListTableViewCell: UITableViewCell {
     @IBOutlet weak var favicon: UIImageView!
@@ -20,6 +21,11 @@ class ItemListTableViewCell: UITableViewCell {
             
             let nsURL = NSURL(string: item!.url)
             urlHost.text = nsURL?.host
+            
+            let domain: String = (nsURL?.host)!
+            favicon.sd_setImageWithURL(
+                NSURL(string: "http://www.google.com/s2/favicons?domain=\(domain)")
+            )
         }
     }
 

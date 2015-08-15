@@ -24,10 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Pocketログイン状態の確認
         if PocketAPI.sharedAPI().loggedIn {
         } else {
+            // 実装を後で変更する。本来は別のviewに飛ばし、ログイン処理をそちらで行う
+            // この状態のままだと、ログイン処理より前にAlamofireでのデータ取得処理がはじまり、アクセストークンがなくてエラー
+            
             // Pocketログイン
             PocketAPI.sharedAPI().loginWithHandler { (api, error) in
                 if error != nil {
                     print("error")
+                } else {
+                    print("success")
                 }
             }
         }
