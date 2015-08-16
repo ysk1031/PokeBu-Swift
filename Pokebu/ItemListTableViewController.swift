@@ -12,10 +12,11 @@ class ItemListTableViewController: UITableViewController {
     
     var apiAccess = PocketApiAccess()
     var fetchItemListObserver: NSObjectProtocol?
+    let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,10 +29,34 @@ class ItemListTableViewController: UITableViewController {
             object: nil,
             queue: nil,
             usingBlock: { notification in
+                self.hideIndicator()
                 self.tableView.reloadData()
+                
+                // 通信エラー時の処理
+                if notification.userInfo != nil {
+                    if let userInfo = notification.userInfo as? [String: String] {
+                        if let errorMessage = userInfo["error"] {
+                            let alertView = UIAlertController(
+                                title: "エラー",
+                                message: errorMessage,
+                                preferredStyle: .Alert
+                            )
+                            let alertAction = UIAlertAction(
+                                title: "OK",
+                                style: .Default,
+                                handler: { action in
+                                    return
+                                }
+                            )
+                            alertView.addAction(alertAction)
+                            self.presentViewController(alertView, animated: true, completion: nil)
+                        }
+                    }
+                }
             }
         )
         
+        displayIndicator()
         apiAccess.fetchData()
     }
 
@@ -39,6 +64,19 @@ class ItemListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Application logic
+    
+    func displayIndicator() {
+        fetchingIndicator.frame = CGRectMake(0, 0, view.frame.size.width / 2, view.frame.size.height / 8)
+        tableView.tableFooterView = fetchingIndicator
+        fetchingIndicator.startAnimating()
+    }
+    
+    func hideIndicator() {
+        fetchingIndicator.stopAnimating()
+    }
+    
     
     // MARK: - Table view data delegate
     
@@ -54,7 +92,7 @@ class ItemListTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return apiAccess.items.count
+            return apiAccess.totalItemCount
         }
         return 0
     }
@@ -62,9 +100,18 @@ class ItemListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! ItemListTableViewCell
-            cell.item = apiAccess.items[indexPath.row]
-            return cell
+            if indexPath.row < apiAccess.totalItemCount {
+                let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! ItemListTableViewCell
+                cell.item = apiAccess.items[indexPath.row]
+                
+                // 全てのアイテムを取得してない && 現在表示できる一番下のセルまで到達した時
+                if !apiAccess.fetchingFullList && apiAccess.totalItemCount - indexPath.row <= 1 {
+                    displayIndicator()
+                    apiAccess.fetchData()
+                }
+                
+                return cell
+            }
         }
         return UITableViewCell()
     }

@@ -160,8 +160,8 @@
 		F205F96C1B7CE5C600F949E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F205F96D1B7CE5E400F949E3 /* PocketItem.swift */,
 				F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */,
+				F205F96D1B7CE5E400F949E3 /* PocketItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

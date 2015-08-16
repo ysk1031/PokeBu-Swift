@@ -17,14 +17,15 @@ class ItemListTableViewCell: UITableViewCell {
     var item: PocketItem? {
         didSet {
             if item == nil { return }
+            
             itemTitle.text = item!.title
             
-            let nsURL = NSURL(string: item!.url)
-            urlHost.text = nsURL?.host
+            let encodedUrl = item!.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            let domain = NSURL(string: encodedUrl!)?.host
+            urlHost.text = domain
             
-            let domain: String = (nsURL?.host)!
             favicon.sd_setImageWithURL(
-                NSURL(string: "http://www.google.com/s2/favicons?domain=\(domain)")
+                NSURL(string: "http://www.google.com/s2/favicons?domain=\(domain!)")
             )
         }
     }
