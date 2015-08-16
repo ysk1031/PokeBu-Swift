@@ -12,10 +12,16 @@ class ItemListTableViewController: UITableViewController {
     
     var apiAccess = PocketApiAccess()
     var fetchItemListObserver: NSObjectProtocol?
+    var refreshItemListObserver: NSObjectProtocol?
     let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshList:", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
+        tableView.alwaysBounceVertical = true
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -77,6 +83,23 @@ class ItemListTableViewController: UITableViewController {
         fetchingIndicator.stopAnimating()
     }
     
+    func refreshList(refreshControl: UIRefreshControl) {
+        refreshControl.beginRefreshing()
+        
+        refreshItemListObserver = NSNotificationCenter.defaultCenter().addObserverForName(
+            apiAccess.PAAFetchCompleteNotification,
+            object: nil,
+            queue: nil,
+            usingBlock: { notification in
+                NSNotificationCenter.defaultCenter().removeObserver(self.refreshItemListObserver!)
+                refreshControl.endRefreshing()
+                
+                // FIX: P2R後にviewが一番上に行ってしまうので、新しく追加されたセル数 x セルの高さ分 viewの位置を下げる
+            }
+        )
+        
+        apiAccess.fetchData(refresh: true)
+    }
     
     // MARK: - Table view data delegate
     
