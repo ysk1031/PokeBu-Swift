@@ -9,11 +9,12 @@
 import UIKit
 
 class ItemListTableViewController: UITableViewController {
+    let cellHeight: CGFloat = 75.0
+    let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     var apiAccess = PocketApiAccess()
     var fetchItemListObserver: NSObjectProtocol?
     var refreshItemListObserver: NSObjectProtocol?
-    let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +95,16 @@ class ItemListTableViewController: UITableViewController {
                 NSNotificationCenter.defaultCenter().removeObserver(self.refreshItemListObserver!)
                 refreshControl.endRefreshing()
                 
-                // FIX: P2R後にviewが一番上に行ってしまうので、新しく追加されたセル数 x セルの高さ分 viewの位置を下げる
+                if notification.userInfo != nil {
+                    if let userInfo = notification.userInfo as? [String: Int] {
+                        if let newFetchedItemCount = userInfo["newFetchedCount"] {
+                            if newFetchedItemCount > 0 {
+                                // P2R後にviewが一番上に行ってしまうので、新しく追加されたセル数 x セルの高さ分 viewの位置を下げる
+                                self.tableView.bounds.origin.y = self.cellHeight * CGFloat(newFetchedItemCount) - self.tableView.contentInset.top
+                            }
+                        }
+                    }
+                }
             }
         )
         
@@ -104,7 +114,7 @@ class ItemListTableViewController: UITableViewController {
     // MARK: - Table view data delegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 75
+        return cellHeight
     }
 
     // MARK: - Table view data source

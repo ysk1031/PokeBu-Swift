@@ -17,7 +17,7 @@ class PocketApiAccess {
     let accessToken = PocketAPI.sharedAPI().pkt_getToken
     let consumerKey = PokebuKeys().pocketSdkConsumerKey()
     let itemCountPerPage = 20
-    let dummyItem = PocketItem(id: 0, title: "", url: "", excerpt: "", imgSrc: nil, timestamp: 0)
+    let dummyItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
     
     let PAAFetchStartNotification = "PAAFetchStartNotification"
     let PAAFetchCompleteNotification = "PAAFetchCompleteNotification"
@@ -38,7 +38,8 @@ class PocketApiAccess {
         var requestParams: Dictionary = [
             "consumer_key": consumerKey,
             "access_token": accessToken,
-            "detailType": "complete"
+            "detailType": "complete",
+            "state": "unread"
         ]
         if refresh {
             requestParams["since"] = String(lastFetchTime)
@@ -71,30 +72,38 @@ class PocketApiAccess {
             }
             json = JSON(data: data!)
             
-            let fetchListLength = json["list"].count
+            var fetchListLength = json["list"].count
             var fetchedItems: [PocketItem] = [PocketItem](count: fetchListLength, repeatedValue: self.dummyItem)
             for (_, elem) in json["list"] {
-                let id = Int(elem["item_id"].string!)
+                let idStr = elem["item_id"].string
                 var title = elem["resolved_title"].string
-                if title!.isEmpty {
+                if title == nil || title!.isEmpty {
                     title = elem["given_title"].string
                 }
-                let url = elem["resolved_url"].string
+                var url = elem["resolved_url"].string
+                if url == nil || url!.isEmpty {
+                    url = elem["given_url"].string
+                }
                 let excerpt = elem["excerpt"].string
                 let imgSrc = elem["image"]["src"].string
-                let timestamp = Int(elem["time_added"].string!)
+                let timestampStr = elem["time_added"].string
                 let sortId = elem["sort_id"].int
                 
-                let item = PocketItem(id: id!, title: title!, url: url!, excerpt: excerpt!, imgSrc: imgSrc, timestamp: timestamp!)
+                let item = PocketItem(id: Int(idStr!)!, title: title!, url: url!, excerpt: excerpt, imgSrc: imgSrc, timestamp: Int(timestampStr!)!)
                 fetchedItems[sortId!] = item
             }
-            // FIX: セルに入るインスタンスが重複する可能性があるので、ユニークにする
             if refresh {
                 fetchedItems += self.items
                 self.items = fetchedItems
             } else {
                 self.items += fetchedItems
             }
+            // セルに入るインスタンスが重複する可能性があるので、ユニークにする
+            // FIX: やり方がイケてない
+            self.items = self.filterUniqueItems(self.items)
+            // 新規取得件数が減ったかもしれないので再代入
+            fetchListLength = self.items.count - self.totalItemCount
+ 
             
             // totalItemCountに現在取得済のアイテム数を格納
             self.totalItemCount = self.items.count
@@ -109,8 +118,23 @@ class PocketApiAccess {
             
             // 読み込み終了
             self.fetching = false
-            NSNotificationCenter.defaultCenter().postNotificationName(self.PAAFetchCompleteNotification, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(self.PAAFetchCompleteNotification,
+                object: nil,
+                userInfo: ["newFetchedCount": fetchListLength]
+            )
         }
+    }
+    
+    func filterUniqueItems(items: [PocketItem]) -> [PocketItem] {
+        var alreadyFetchedItemIds = [Int]()
+        var uniqueItems = [PocketItem]()
+        for item in items {
+            if !alreadyFetchedItemIds.contains(item.id) {
+                uniqueItems.append(item)
+                alreadyFetchedItemIds.append(item.id)
+            }
+        }
+        return uniqueItems
     }
     
 }
