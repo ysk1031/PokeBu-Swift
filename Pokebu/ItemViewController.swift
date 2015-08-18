@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
-class ItemViewController: UIViewController {
-    var item = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
+class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
+    @IBOutlet weak var itemTitle: TTTAttributedLabel!
+    
+    var item: PocketItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        itemTitle.delegate = self
+        setItemView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +26,23 @@ class ItemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Application logic
+    
+    func setItemView() {
+        // 記事タイトル
+        itemTitle.setText(item.title)
+        itemTitle.linkAttributes = [NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleNone.rawValue)]
+        itemTitle.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor(red: 0.929, green: 0.251, blue: 0.333, alpha: 1.0)]
+        let encodedUrl: String? = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        let titleRange: NSRange = (item.title as NSString).rangeOfString(item.title)
+        itemTitle.addLinkToURL(NSURL(string: encodedUrl!), withRange: titleRange)
+    }
+    
+    // MARK: - TTTAttributedLabel delegate
+    
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        print(1)
+    }
 
     /*
     // MARK: - Navigation

@@ -20,7 +20,7 @@ class ItemListTableViewCell: UITableViewCell {
             
             itemTitle.text = item!.title
             
-            let encodedUrl = item!.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            let encodedUrl: String? = item!.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             let domain = NSURL(string: encodedUrl!)?.host
             urlHost.text = domain
             
