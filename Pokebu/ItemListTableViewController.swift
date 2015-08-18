@@ -116,6 +116,11 @@ class ItemListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return cellHeight
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("PushItem", sender: indexPath)
+    }
 
     // MARK: - Table view data source
 
@@ -185,14 +190,19 @@ class ItemListTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "PushItem" {
+            let viewController = segue.destinationViewController as! ItemViewController
+            if let indexPath = sender as? NSIndexPath {
+                viewController.item = apiAccess.items[indexPath.row]
+            }
+        }
     }
-    */
 
 }
