@@ -6,6 +6,7 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SwiftyJSON (2.2.1)
+  - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
   - SDWebImage
   - SwiftyJSON (from `git@github.com:SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
+  - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -28,13 +30,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 9a1e321cf0a345b32142394446fa1a7e08cf6942
+    :commit: 6446acd786b647bcf21e57035fc975be4cb559d8
     :git: git@github.com:Alamofire/Alamofire.git
   PocketAPI:
     :commit: 47ffff591a02f780f1928e3fba10e0f7f68cf132
     :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
   SwiftyJSON:
-    :commit: a0fe1be5251916982475b12d7d699a1d943ae88b
+    :commit: d2455075224731f0449366c71e1a08d10d718e6d
     :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -43,5 +45,6 @@ SPEC CHECKSUMS:
   PocketAPI: f65f80eee2b05d28aeecf711b0f5b87ee2be3e28
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.38.2
