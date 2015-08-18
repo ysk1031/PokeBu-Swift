@@ -11,6 +11,8 @@ import TTTAttributedLabel
 
 class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var itemTitle: TTTAttributedLabel!
+    @IBOutlet weak var excerpt: UILabel!
+    
     
     var item: PocketItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
 
@@ -36,6 +38,9 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         let encodedUrl: String? = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         let titleRange: NSRange = (item.title as NSString).rangeOfString(item.title)
         itemTitle.addLinkToURL(NSURL(string: encodedUrl!), withRange: titleRange)
+        
+        // 抜粋
+        excerpt.text = item.excerpt
     }
     
     // MARK: - TTTAttributedLabel delegate
