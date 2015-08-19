@@ -7,11 +7,14 @@ pod 'SwiftyJSON', git: 'git@github.com:SwiftyJSON/SwiftyJSON.git', branch: 'xcod
 pod 'SDWebImage'
 pod 'TTTAttributedLabel'
 pod 'DateTools'
+pod 'HatenaBookmarkSDK', git: 'git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git'
 
 plugin 'cocoapods-keys', {
   project: 'Pokebu',
   keys: %w{
     PocketSdkConsumerKey
+    HatenaConsumerKey
+    HatenaConsumerSecret
   }
 }
 

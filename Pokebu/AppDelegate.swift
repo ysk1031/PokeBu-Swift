@@ -8,6 +8,7 @@
 
 import UIKit
 import PocketAPI
+import HatenaBookmarkSDK
 import Keys
 
 @UIApplicationMain
@@ -55,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        initHatenaBookmarkSdk()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -69,6 +70,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             return false
         }
+    }
+    
+    func initHatenaBookmarkSdk() {
+        let hatenaConsumerKey = PokebuKeys().hatenaConsumerKey()
+        let hatenaConsumerSecret = PokebuKeys().hatenaConsumerSecret()
+        HTBHatenaBookmarkManager.sharedManager().setConsumerKey(hatenaConsumerKey, consumerSecret: hatenaConsumerSecret)
     }
     
 }

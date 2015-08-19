@@ -54,18 +54,22 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/DateTools.framework'
+  install_framework 'Pods/HatenaBookmarkSDK.framework'
   install_framework 'Pods/Keys.framework'
   install_framework 'Pods/PocketAPI.framework'
   install_framework 'Pods/SDWebImage.framework'
+  install_framework 'Pods/SFHFKeychainUtils.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/TTTAttributedLabel.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
   install_framework 'Pods/DateTools.framework'
+  install_framework 'Pods/HatenaBookmarkSDK.framework'
   install_framework 'Pods/Keys.framework'
   install_framework 'Pods/PocketAPI.framework'
   install_framework 'Pods/SDWebImage.framework'
+  install_framework 'Pods/SFHFKeychainUtils.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/TTTAttributedLabel.framework'
 fi

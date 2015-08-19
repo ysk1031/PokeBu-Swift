@@ -66,6 +66,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="My Pocket" id="p0n-9Z-xpi">
                         <barButtonItem key="leftBarButtonItem" title="設定" id="XUM-gK-Wyv">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="UK7-zC-CCW" kind="presentation" id="br2-gt-c68"/>
                             </connections>
@@ -93,11 +94,29 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTy-CK-SeB">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="OHq-te-UZE"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Item" id="dfV-Ms-fz8"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YRj-ep-drr"/>
+                                    <barButtonItem systemItem="bookmarks" id="dfV-Ms-fz8">
+                                        <connections>
+                                            <action selector="bookmarkButtonTapped:" destination="rhx-v0-YQn" id="xhE-3o-VOQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="BL8-fy-Pkb"/>
+                                    <barButtonItem systemItem="organize" id="FoU-SU-b09">
+                                        <connections>
+                                            <action selector="archiveButtonTapped:" destination="rhx-v0-YQn" id="0el-Dt-nK0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="3M4-ci-I6V"/>
+                                    <barButtonItem systemItem="action" id="OWA-b6-EZc">
+                                        <connections>
+                                            <action selector="actionButtonTapped:" destination="rhx-v0-YQn" id="Hrc-5J-yzr"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4M9-39-Ncz">
@@ -283,7 +302,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="a6a-sj-UiF">
-                        <barButtonItem key="leftBarButtonItem" title="閉じる" id="5yS-bD-JjF"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="5yS-bD-JjF"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hn2-z7-fP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -313,6 +332,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pfE-TN-wQb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.30588235294117649" green="0.72156862745098038" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Uw4-zC-4Uf" kind="relationship" relationship="rootViewController" id="fKR-3v-Cw0"/>

@@ -1,0 +1,6 @@
+framework module HatenaBookmarkSDK {
+  umbrella header "HatenaBookmarkSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

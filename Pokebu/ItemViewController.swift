@@ -10,6 +10,7 @@ import UIKit
 import TTTAttributedLabel
 import SDWebImage
 import DateTools
+import HatenaBookmarkSDK
 
 class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var favicon: UIImageView!
@@ -25,8 +26,12 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var photoHeight: NSLayoutConstraint!
     @IBOutlet weak var urlTopMargin: NSLayoutConstraint!
     
-    
-    var item: PocketItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
+    var encodedUrl: String?
+    var item: PocketItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0) {
+        didSet {
+            encodedUrl = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +49,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     
     func setItemView() {
         // ファビコン
-        let encodedUrl: String? = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         let domain = NSURL(string: encodedUrl!)?.host
         favicon.sd_setImageWithURL(
             NSURL(string: "http://www.google.com/s2/favicons?domain=\(domain!)")
@@ -105,11 +109,34 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         return label.frame.height
     }
     
+    func presentShareActionSheet() {
+        let hatenaBookmarkActivity: HTBHatenaBookmarkActivity = HTBHatenaBookmarkActivity()
+        let activityController = UIActivityViewController(
+            activityItems: [item.title, encodedUrl!],
+            applicationActivities: [hatenaBookmarkActivity]
+        )
+
+        presentViewController(activityController, animated: true, completion: nil)
+    }
+    
     // MARK: - TTTAttributedLabel delegate
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         print(1)
     }
+    
+    // MARK: - IBAction
+    
+    @IBAction func bookmarkButtonTapped(sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func archiveButtonTapped(sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
+        presentShareActionSheet()
+    }
+
 
     /*
     // MARK: - Navigation
