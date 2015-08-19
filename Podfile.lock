@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (2.0.0-beta.1)
+  - DateTools (1.6.1)
   - Keys (1.0.0)
   - PocketAPI (1.0.3)
   - SDWebImage (3.7.3):
@@ -10,6 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - DateTools
   - Keys (from `Pods/CocoaPodsKeys`)
   - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
   - SDWebImage
@@ -30,7 +32,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 6446acd786b647bcf21e57035fc975be4cb559d8
+    :commit: 97531ad0137a335653c83bb911bae33c67621f1e
     :git: git@github.com:Alamofire/Alamofire.git
   PocketAPI:
     :commit: 47ffff591a02f780f1928e3fba10e0f7f68cf132
@@ -41,6 +43,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 96feccc1e48a735edb92395cf023ba4ed52bdb45
+  DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   PocketAPI: f65f80eee2b05d28aeecf711b0f5b87ee2be3e28
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

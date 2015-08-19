@@ -8,10 +8,22 @@
 
 import UIKit
 import TTTAttributedLabel
+import SDWebImage
+import DateTools
 
 class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
+    @IBOutlet weak var favicon: UIImageView!
     @IBOutlet weak var itemTitle: TTTAttributedLabel!
     @IBOutlet weak var excerpt: UILabel!
+    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var url: UILabel!
+    @IBOutlet weak var date: UILabel!
+    
+    @IBOutlet weak var excerptLeftMargin: NSLayoutConstraint!
+    @IBOutlet weak var excerptRightMargin: NSLayoutConstraint!
+    @IBOutlet weak var photoWidth: NSLayoutConstraint!
+    @IBOutlet weak var photoHeight: NSLayoutConstraint!
+    @IBOutlet weak var urlTopMargin: NSLayoutConstraint!
     
     
     var item: PocketItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
@@ -31,16 +43,66 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     // MARK: - Application logic
     
     func setItemView() {
+        // ファビコン
+        let encodedUrl: String? = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        let domain = NSURL(string: encodedUrl!)?.host
+        favicon.sd_setImageWithURL(
+            NSURL(string: "http://www.google.com/s2/favicons?domain=\(domain!)")
+        )
+        
         // 記事タイトル
         itemTitle.setText(item.title)
         itemTitle.linkAttributes = [NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleNone.rawValue)]
         itemTitle.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor(red: 0.929, green: 0.251, blue: 0.333, alpha: 1.0)]
-        let encodedUrl: String? = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         let titleRange: NSRange = (item.title as NSString).rangeOfString(item.title)
         itemTitle.addLinkToURL(NSURL(string: encodedUrl!), withRange: titleRange)
         
         // 抜粋
         excerpt.text = item.excerpt
+        
+        // 抜粋文ラベルの高さ算出
+        let excerptLabelHeight: CGFloat
+        if item.imgSrc == nil {
+            excerptLabelHeight = heightForLabelText(excerpt.text!,
+                font: excerpt.font,
+                width: view.bounds.size.width - excerptLeftMargin.constant - excerptRightMargin.constant
+            )
+        } else {
+            excerptLabelHeight = heightForLabelText(excerpt.text!,
+                font: excerpt.font,
+                width: view.bounds.size.width - excerptLeftMargin.constant - excerptRightMargin.constant
+            )
+        }
+        
+        // 写真
+        if let imageUrl = item.imgSrc {
+            let encodedImageUrl: String? = imageUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            photo.sd_setImageWithURL(NSURL(string: encodedImageUrl!))
+        } else {
+            excerptRightMargin.constant = 10
+            photoWidth.constant = 0
+            photoHeight.constant = 0
+        }
+        
+        // URL
+        if photoHeight.constant > 0 && excerptLabelHeight < photo.frame.size.height {
+            urlTopMargin.constant = 10 + photo.frame.size.height - excerptLabelHeight
+        }
+        url.text = item.url
+        
+        // 追加日
+        let addedDate = NSDate(timeIntervalSince1970: Double(item.timestamp) as NSTimeInterval)
+        date.text = "\(addedDate.timeAgoSinceNow())に追加"
+    }
+    
+    func heightForLabelText(text: String, font: UIFont, width: CGFloat) -> CGFloat {
+        let label: UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))
+        label.numberOfLines = 0
+        label.font = font
+        label.text = text
+        label.sizeToFit()
+        
+        return label.frame.height
     }
     
     // MARK: - TTTAttributedLabel delegate
