@@ -9,6 +9,17 @@
 import UIKit
 
 class SettingTableViewController: UITableViewController {
+    let sectionNumber: Int = 2
+    let sectionNames: Array = ["サービス連携", "その他"]
+    let menusInSection: [String: Array] = [
+        "サービス連携": [
+            "Pocket",
+            "はてなブックマーク"
+        ],
+        "その他": [
+            "このアプリについて"
+        ]
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,28 +35,57 @@ class SettingTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Table view data delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        print(1)
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sectionNumber
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if section < sectionNumber {
+            let sectionName = sectionNames[section]
+            if let menus = menusInSection[sectionName] {
+                return menus.count
+            }
+        }
         return 0
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section < sectionNumber {
+            return sectionNames[section]
+        }
+        return nil
     }
-    */
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section < sectionNumber {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Setting", forIndexPath: indexPath)
+            if indexPath.section < sectionNumber {
+                let sectionName = sectionNames[indexPath.section]
+                if let menus = menusInSection[sectionName] {
+                    cell.textLabel?.text = menus[indexPath.row]
+                    cell.textLabel?.font = UIFont.systemFontOfSize(16.0)
+                }
+            }
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func closeButtonTapped(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // Override to support conditional editing of the table view.

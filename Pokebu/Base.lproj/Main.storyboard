@@ -287,11 +287,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Service" id="lVe-uc-FLL">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Setting" id="lVe-uc-FLL">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lVe-uc-FLL" id="BHd-Ky-LZx">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -302,7 +302,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="a6a-sj-UiF">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="5yS-bD-JjF"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="5yS-bD-JjF">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="Y8v-8J-ubB" id="Z9D-9E-kJD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hn2-z7-fP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -316,6 +320,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BwV-m7-YYj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.30588235294117649" green="0.72156862745098038" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Y8v-8J-ubB" kind="relationship" relationship="rootViewController" id="3TU-in-CbW"/>
