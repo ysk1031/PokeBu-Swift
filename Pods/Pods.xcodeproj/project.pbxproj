@@ -1455,6 +1455,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					9DCF91EE731D07B86CB3CCCE27D4055B = {
+						DevelopmentTeam = 8C9TZF26K4;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1815,6 +1820,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA4331271EE78CFF70DC197FC30A5A7D /* SFHFKeychainUtils-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
@@ -1830,6 +1836,7 @@
 				MODULEMAP_FILE = "Target Support Files/SFHFKeychainUtils/SFHFKeychainUtils.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = SFHFKeychainUtils;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2086,6 +2093,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA4331271EE78CFF70DC197FC30A5A7D /* SFHFKeychainUtils-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
@@ -2101,6 +2109,7 @@
 				MODULEMAP_FILE = "Target Support Files/SFHFKeychainUtils/SFHFKeychainUtils.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = SFHFKeychainUtils;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
