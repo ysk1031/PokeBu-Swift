@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Pocketログイン
             PocketAPI.sharedAPI().loginWithHandler { (api, error) in
                 if error != nil {
-                    print("error")
+                
                 } else {
-                    print("success")
+                
                 }
             }
         }

@@ -16,11 +16,12 @@ class PocketApiAccess {
     let apiBaseUrl = "https://getpocket.com/v3/"
     let accessToken = PocketAPI.sharedAPI().pkt_getToken
     let consumerKey = PokebuKeys().pocketSdkConsumerKey()
-    let itemCountPerPage = 20
+    let itemCountPerPage = 50
     let dummyItem = PocketItem(id: 0, title: "", url: "", excerpt: nil, imgSrc: nil, timestamp: 0)
     
-    let PAAFetchStartNotification = "PAAFetchStartNotification"
     let PAAFetchCompleteNotification = "PAAFetchCompleteNotification"
+    let PAAArchiveStartNotification = "PAAArchiveStartNotification"
+    let PAAArchiveCompletionNotification = "PAAArchiveCompletionNotification"
     
     var items = [PocketItem]()
     var fetching = false
@@ -112,7 +113,7 @@ class PocketApiAccess {
             self.lastFetchTime = NSDate().timeIntervalSince1970
             
             // 取得したアイテム数が itemCountPerPage 未満なら、全てのアイテムを取得し終えたと判断 (P2Rじゃないとき）
-            if !refresh && fetchListLength < 20 {
+            if !refresh && fetchListLength < 1 {
                 self.fetchingFullList = true
             }
             
@@ -135,6 +136,15 @@ class PocketApiAccess {
             }
         }
         return uniqueItems
+    }
+    
+    func archiveItemAtIndex(index: Int) {
+        NSNotificationCenter.defaultCenter().postNotificationName(PAAArchiveStartNotification,
+            object: nil,
+            userInfo: ["archivedItemIndex": index]
+        )
+        
+        // APIに実際にアクセス
     }
     
 }

@@ -13,16 +13,20 @@ class ItemListTableViewController: UITableViewController {
     let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     var apiAccess = PocketApiAccess()
-    var fetchItemListObserver: NSObjectProtocol?
     var refreshItemListObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addNotificationObservers()
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshList:", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         tableView.alwaysBounceVertical = true
+        
+        displayIndicator()
+        apiAccess.fetchData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,8 +35,16 @@ class ItemListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        fetchItemListObserver = NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.PAAFetchCompleteNotification,
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Application logic
+    
+    func addNotificationObservers() {
+        // PAAFetchCompleteNotification
+        NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.PAAFetchCompleteNotification,
             object: nil,
             queue: nil,
             usingBlock: { notification in
@@ -63,16 +75,35 @@ class ItemListTableViewController: UITableViewController {
             }
         )
         
-        displayIndicator()
-        apiAccess.fetchData()
+        // PAAArchiveStartNotification
+        NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.PAAArchiveStartNotification,
+            object: nil,
+            queue: nil,
+            usingBlock: { notification in
+                if notification.userInfo != nil {
+                    if let userInfo = notification.userInfo as? [String: Int] {
+                        if let archivedItemIndex = userInfo["archivedItemIndex"] {
+                            self.tableView.beginUpdates()
+                            
+                            // 0.5秒遅延
+                            let delay = 0.5 * Double(NSEC_PER_SEC)
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay)), dispatch_get_main_queue(), {
+                                // データからitem削除
+                                self.apiAccess.items.removeAtIndex(archivedItemIndex)
+                                self.apiAccess.totalItemCount -= 1
+                                
+                                // tableViewからセル削除
+                                let deletedIndexPath: NSIndexPath = NSIndexPath(forRow: archivedItemIndex, inSection: 0)
+                                self.tableView.deleteRowsAtIndexPaths([deletedIndexPath], withRowAnimation: .Middle)
+                            })
+                            
+                            self.tableView.endUpdates()
+                        }
+                    }
+                }
+            }
+        )
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Application logic
     
     func displayIndicator() {
         fetchingIndicator.frame = CGRectMake(0, 0, view.frame.size.width / 2, view.frame.size.height / 8)
@@ -200,7 +231,10 @@ class ItemListTableViewController: UITableViewController {
         if segue.identifier == "PushItem" {
             let viewController = segue.destinationViewController as! ItemViewController
             if let indexPath = sender as? NSIndexPath {
+                // FIX: パラメータ渡し過ぎな気も
                 viewController.item = apiAccess.items[indexPath.row]
+                viewController.index = indexPath.row
+                viewController.apiAccess = apiAccess
             }
         }
     }

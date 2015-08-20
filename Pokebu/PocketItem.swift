@@ -24,4 +24,5 @@ class PocketItem {
         self.imgSrc = imgSrc
         self.timestamp = timestamp
     }
+
 }

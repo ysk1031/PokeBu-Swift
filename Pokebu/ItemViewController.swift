@@ -32,6 +32,8 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
             encodedUrl = item.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         }
     }
+    var index: Int?
+    var apiAccess: PocketApiAccess = PocketApiAccess()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,10 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         
         // 記事タイトル
         itemTitle.setText(item.title)
-        itemTitle.linkAttributes = [NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleNone.rawValue)]
+        itemTitle.linkAttributes = [
+            kCTForegroundColorAttributeName : UIColor(red: 0.314, green: 0.737, blue: 0.714, alpha: 1.0),
+            NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleNone.rawValue)
+        ]
         itemTitle.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor(red: 0.929, green: 0.251, blue: 0.333, alpha: 1.0)]
         let titleRange: NSRange = (item.title as NSString).rangeOfString(item.title)
         itemTitle.addLinkToURL(NSURL(string: encodedUrl!), withRange: titleRange)
@@ -110,10 +115,9 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     }
     
     func presentShareActionSheet() {
-        let hatenaBookmarkActivity: HTBHatenaBookmarkActivity = HTBHatenaBookmarkActivity()
         let activityController = UIActivityViewController(
             activityItems: [item.title, encodedUrl!],
-            applicationActivities: [hatenaBookmarkActivity]
+            applicationActivities: nil
         )
 
         presentViewController(activityController, animated: true, completion: nil)
@@ -122,18 +126,38 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     // MARK: - TTTAttributedLabel delegate
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        print(1)
     }
     
     // MARK: - IBAction
     
     @IBAction func bookmarkButtonTapped(sender: UIBarButtonItem) {
-        let hatenaBookmarkViewController = HTBBookmarkViewController()
+        let hatenaBookmarkViewController = HTBHatenaBookmarkViewController()
         hatenaBookmarkViewController.URL = NSURL(string: encodedUrl!)
         presentViewController(hatenaBookmarkViewController, animated: true, completion: nil)
     }
     
     @IBAction func archiveButtonTapped(sender: UIBarButtonItem) {
+        let alert = UIAlertController(
+            title: "確認",
+            message: "この記事をアーカイブしますか？",
+            preferredStyle: UIAlertControllerStyle.ActionSheet
+        )
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.Default,
+            handler: { action in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.apiAccess.archiveItemAtIndex(self.index!)
+            }
+        )
+        let cancelAction = UIAlertAction(
+            title: "キャンセル",
+            style: UIAlertActionStyle.Cancel,
+            handler: { action in return }
+        )
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {

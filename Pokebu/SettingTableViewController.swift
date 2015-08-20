@@ -44,12 +44,10 @@ class SettingTableViewController: UITableViewController {
     // MARK: - Application logic
     
     func authorizePocket() {
-        print(1)
     }
     
     func  authorizeHatenaBookmark() {
         if HTBHatenaBookmarkManager.sharedManager().authorized {
-            print("hatebu logined")
         } else {
             NSNotificationCenter.defaultCenter().addObserver(self,
                 selector: "showHatenaOauthLoginView:",
@@ -64,7 +62,6 @@ class SettingTableViewController: UITableViewController {
     }
     
     func showAppInformation() {
-        print(3)
     }
     
     func showHatenaOauthLoginView(notification: NSNotification) {
