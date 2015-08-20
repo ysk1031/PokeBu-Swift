@@ -128,6 +128,9 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     // MARK: - IBAction
     
     @IBAction func bookmarkButtonTapped(sender: UIBarButtonItem) {
+        let hatenaBookmarkViewController = HTBBookmarkViewController()
+        hatenaBookmarkViewController.URL = NSURL(string: encodedUrl!)
+        presentViewController(hatenaBookmarkViewController, animated: true, completion: nil)
     }
     
     @IBAction func archiveButtonTapped(sender: UIBarButtonItem) {
