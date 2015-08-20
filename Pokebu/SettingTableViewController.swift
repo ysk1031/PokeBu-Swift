@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HatenaBookmarkSDK
 
 class SettingTableViewController: UITableViewController {
     let sectionNumber: Int = 2
@@ -20,6 +21,10 @@ class SettingTableViewController: UITableViewController {
             "このアプリについて"
         ]
     ]
+    let hatenaOauthLoginNavigationController: UINavigationController = UINavigationController(
+        navigationBarClass: HTBNavigationBar.self,
+        toolbarClass: nil
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +41,59 @@ class SettingTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Application logic
+    
+    func authorizePocket() {
+        print(1)
+    }
+    
+    func  authorizeHatenaBookmark() {
+        if HTBHatenaBookmarkManager.sharedManager().authorized {
+            print("hatebu logined")
+        } else {
+            NSNotificationCenter.defaultCenter().addObserver(self,
+                selector: "showHatenaOauthLoginView:",
+                name: kHTBLoginStartNotification,
+                object: nil
+            )
+            HTBHatenaBookmarkManager.sharedManager().authorizeWithSuccess(
+                { self.hatenaOauthLoginNavigationController.dismissViewControllerAnimated(true, completion: nil) },
+                failure: { error in }
+            )
+        }
+    }
+    
+    func showAppInformation() {
+        print(3)
+    }
+    
+    func showHatenaOauthLoginView(notification: NSNotification) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: kHTBLoginStartNotification, object: nil)
+        let request: NSURLRequest = notification.object as! NSURLRequest
+        let viewController: HTBLoginWebViewController = HTBLoginWebViewController(authorizationRequest: request)
+        hatenaOauthLoginNavigationController.viewControllers = [viewController]
+        presentViewController(hatenaOauthLoginNavigationController, animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print(1)
+        
+        if indexPath.section < sectionNumber {
+            if let menus = menusInSection[sectionNames[indexPath.section]] {
+                switch menus[indexPath.row] {
+                case "Pocket":
+                    authorizePocket()
+                case "はてなブックマーク":
+                    authorizeHatenaBookmark()
+                case "このアプリについて":
+                    showAppInformation()
+                default:
+                    break
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source
