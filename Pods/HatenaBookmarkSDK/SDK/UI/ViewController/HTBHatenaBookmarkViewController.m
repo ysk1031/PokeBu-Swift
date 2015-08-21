@@ -204,6 +204,13 @@
     if (buttonIndex == 1) {
         UINavigationController *navigationController =[[UINavigationController alloc] initWithNavigationBarClass:[HTBNavigationBar class]
                                                                                                     toolbarClass:nil];
+        
+        // PATCH: ログイン用WebViewControllerのナビゲーションバーのスタイル変更
+        navigationController.navigationBar.translucent = false;
+        navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.306 green:0.722 blue:0.698 alpha:1.0];
+        navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        
         HTBLoginWebViewController *loginViewController = [[HTBLoginWebViewController alloc] init];
         __weak HTBHatenaBookmarkViewController *weakSelf = self;
         __weak HTBLoginWebViewController *weakLogin = loginViewController;
