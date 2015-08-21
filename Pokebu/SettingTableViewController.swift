@@ -28,6 +28,8 @@ class SettingTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setStyleForHatenaOauthLoginNavigationBar()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -43,11 +45,26 @@ class SettingTableViewController: UITableViewController {
     
     // MARK: - Application logic
     
+    func setStyleForHatenaOauthLoginNavigationBar() {
+        hatenaOauthLoginNavigationController.navigationBar.translucent = false
+        hatenaOauthLoginNavigationController.navigationBar.barTintColor = UIColor(
+            red: 0.306,
+            green: 0.722,
+            blue: 0.698,
+            alpha: 1.0
+        )
+        hatenaOauthLoginNavigationController.navigationBar.tintColor = UIColor.whiteColor()
+        hatenaOauthLoginNavigationController.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
+    }
+    
     func authorizePocket() {
     }
     
-    func  authorizeHatenaBookmark() {
+    func authorizeHatenaBookmark() {
         if HTBHatenaBookmarkManager.sharedManager().authorized {
+            performSegueWithIdentifier("PushHatenaConfig", sender: nil)
         } else {
             NSNotificationCenter.defaultCenter().addObserver(self,
                 selector: "showHatenaOauthLoginView:",
@@ -56,7 +73,7 @@ class SettingTableViewController: UITableViewController {
             )
             HTBHatenaBookmarkManager.sharedManager().authorizeWithSuccess(
                 { self.hatenaOauthLoginNavigationController.dismissViewControllerAnimated(true, completion: nil) },
-                failure: { error in }
+                failure: { error in return }
             )
         }
     }
