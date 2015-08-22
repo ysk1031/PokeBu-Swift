@@ -55,19 +55,7 @@ class ItemListTableViewController: UITableViewController {
                 if notification.userInfo != nil {
                     if let userInfo = notification.userInfo as? [String: String] {
                         if let errorMessage = userInfo["error"] {
-                            let alertView = UIAlertController(
-                                title: "エラー",
-                                message: errorMessage,
-                                preferredStyle: .Alert
-                            )
-                            let alertAction = UIAlertAction(
-                                title: "OK",
-                                style: .Default,
-                                handler: { action in
-                                    return
-                                }
-                            )
-                            alertView.addAction(alertAction)
+                            let alertView = UIAlertController.setRequestFailureMessage(errorMessage)
                             self.presentViewController(alertView, animated: true, completion: nil)
                         }
                     }
@@ -98,6 +86,22 @@ class ItemListTableViewController: UITableViewController {
                             })
                             
                             self.tableView.endUpdates()
+                        }
+                    }
+                }
+            }
+        )
+        
+        // PAAArchiveCompleteNotification
+        NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.PAAArchiveCompletionNotification,
+            object: nil,
+            queue: nil,
+            usingBlock: { notification in
+                if notification.userInfo != nil {
+                    if let userInfo = notification.userInfo as? [String: String] {
+                        if let errorMessage = userInfo["error"] {
+                            let alertView = UIAlertController.setRequestFailureMessage(errorMessage)
+                            self.presentViewController(alertView, animated: true, completion: nil)
                         }
                     }
                 }

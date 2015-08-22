@@ -147,7 +147,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
             style: UIAlertActionStyle.Default,
             handler: { action in
                 self.navigationController?.popToRootViewControllerAnimated(true)
-                self.apiAccess.archiveItemAtIndex(self.index!)
+                self.apiAccess.archiveItemAtIndex(self.index!, itemId: self.item.id)
             }
         )
         let cancelAction = UIAlertAction(

@@ -73,7 +73,10 @@ class SettingTableViewController: UITableViewController {
             )
             HTBHatenaBookmarkManager.sharedManager().authorizeWithSuccess(
                 { self.hatenaOauthLoginNavigationController.dismissViewControllerAnimated(true, completion: nil) },
-                failure: { error in return }
+                failure: { error in
+                    let alertView = UIAlertController.setRequestFailureMessage(error.localizedDescription)
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                }
             )
         }
     }

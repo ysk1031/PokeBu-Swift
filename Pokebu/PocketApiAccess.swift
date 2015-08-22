@@ -138,13 +138,34 @@ class PocketApiAccess {
         return uniqueItems
     }
     
-    func archiveItemAtIndex(index: Int) {
+    func archiveItemAtIndex(index: Int, itemId: Int) {
         NSNotificationCenter.defaultCenter().postNotificationName(PAAArchiveStartNotification,
             object: nil,
             userInfo: ["archivedItemIndex": index]
         )
         
         // APIに実際にアクセス
+        let methodUrl = apiBaseUrl + "send"
+        var requestParams: Dictionary = [
+            "consumer_key": consumerKey,
+            "access_token": accessToken
+        ]
+        let json = JSON(["action": "archive", "item_id": itemId])
+        requestParams["actions"] = [String(json)].description
+        
+        Alamofire.request(.GET, methodUrl, parameters: requestParams).response {
+            request, response, data, error in
+            if error != nil {
+                var message = "不明なエラーが発生しました。"
+                if let description = error?.localizedDescription {
+                    message = description
+                }
+                NSNotificationCenter.defaultCenter().postNotificationName(self.PAAArchiveCompletionNotification,
+                    object: nil,
+                    userInfo: ["error": message]
+                )
+                return
+            }
+        }
     }
-    
 }
