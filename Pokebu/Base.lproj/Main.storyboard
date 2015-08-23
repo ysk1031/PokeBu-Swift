@@ -178,11 +178,13 @@
                                                     <constraint firstAttribute="height" constant="0.5" id="42Y-ra-zhK"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGe-Ej-oo3">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGe-Ej-oo3">
                                                 <rect key="frame" x="10" y="122" width="580" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="ktB-f2-aMN"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLt-pc-ehL">
@@ -261,6 +263,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bookmarkViewButton" destination="NGe-Ej-oo3" id="ZrX-rB-wIj"/>
                         <outlet property="date" destination="mHg-7p-l0n" id="y20-vr-WZl"/>
                         <outlet property="excerpt" destination="Xgx-NE-kvN" id="vmV-U6-4pV"/>
                         <outlet property="excerptLeftMargin" destination="rn3-fy-YZA" id="lnP-Ga-HvO"/>

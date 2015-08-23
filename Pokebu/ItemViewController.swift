@@ -19,6 +19,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var url: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var bookmarkViewButton: UIButton!
     
     @IBOutlet weak var excerptLeftMargin: NSLayoutConstraint!
     @IBOutlet weak var excerptRightMargin: NSLayoutConstraint!
@@ -34,6 +35,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     }
     var index: Int?
     var apiAccess: PocketApiAccess = PocketApiAccess()
+    var bookmarkCount: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +104,12 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         // 追加日
         let addedDate = NSDate(timeIntervalSince1970: Double(item.timestamp) as NSTimeInterval)
         date.text = "\(addedDate.timeAgoSinceNow())に追加"
+        
+        // ブックマーク閲覧ボタン
+        bookmarkViewButton.setAttributedTitle(bookmarkCountButtonText(),
+            forState: UIControlState.Normal
+        )
+        updateBookmarkCount()
     }
     
     func heightForLabelText(text: String, font: UIFont, width: CGFloat) -> CGFloat {
@@ -121,6 +129,54 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         )
 
         presentViewController(activityController, animated: true, completion: nil)
+    }
+    
+    func bookmarkCountButtonText() -> NSMutableAttributedString {
+        let boldTextRange = NSMakeRange(0, NSAttributedString(string: String(bookmarkCount)).length)
+        let mutableText: NSMutableAttributedString = NSMutableAttributedString(
+            string: String(bookmarkCount) + " ブックマーク"
+        )
+        mutableText.addAttribute(NSForegroundColorAttributeName,
+            value: UIColor.grayColor(),
+            range: NSMakeRange(0, mutableText.length)
+        )
+        mutableText.addAttribute(NSForegroundColorAttributeName,
+            value: UIColor.blackColor(),
+            range: boldTextRange
+        )
+        mutableText.addAttribute(NSFontAttributeName,
+            value: UIFont.boldSystemFontOfSize(16.0),
+            range: boldTextRange
+        )
+        
+        return mutableText
+    }
+    
+    func updateBookmarkCount() {
+        NSNotificationCenter.defaultCenter().addObserverForName(item.BookmarkCountFetchCompleteNotification,
+            object: nil,
+            queue: nil,
+            usingBlock: { notification in
+                NSNotificationCenter.defaultCenter().removeObserver(self.item.BookmarkCountFetchCompleteNotification)
+                if notification.userInfo != nil {
+                    if let userInfo = notification.userInfo as? [String: Int] {
+                        if let bookmarkCount = userInfo["bookmarkCount"] {
+                            self.bookmarkCount = bookmarkCount
+                            let bookmarkCountButtonText = self.bookmarkCountButtonText()
+                            
+                            // アニメーションをオフにしてから、ブックマーク数の表示更新
+                            UIView.setAnimationsEnabled(false)
+                            self.bookmarkViewButton.setAttributedTitle(bookmarkCountButtonText,
+                                forState: UIControlState.Normal
+                            )
+                            self.bookmarkViewButton.layoutIfNeeded()
+                            UIView.setAnimationsEnabled(true)
+                        }
+                    }
+                }
+            }
+        )
+        item.fetchHatenaBookmarkCountOf(item.url)
     }
     
     // MARK: - TTTAttributedLabel delegate
