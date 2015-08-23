@@ -220,7 +220,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         presentShareActionSheet()
     }
 
-
     /*
     // MARK: - Navigation
 
