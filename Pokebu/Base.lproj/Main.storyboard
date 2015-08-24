@@ -13,6 +13,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Item" rowHeight="75" id="paj-jN-9bG" customClass="ItemListTableViewCell" customModule="Pokebu" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="75"/>
@@ -92,32 +93,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2H-4k-9nI">
-                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="no2-tS-ILN"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KQn-tK-pJN"/>
-                                    <barButtonItem systemItem="add" id="joO-8A-juW">
-                                        <connections>
-                                            <action selector="bookmarkButtonTapped:" destination="nDc-Gu-3a0" id="qZJ-O2-B9n"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="XVf-to-31p"/>
-                                    <barButtonItem systemItem="organize" id="HwG-pY-hMT">
-                                        <connections>
-                                            <action selector="archiveButtonTapped:" destination="nDc-Gu-3a0" id="c04-Ml-Qc9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="U4U-LN-hhJ"/>
-                                    <barButtonItem systemItem="action" id="DR0-Y5-Nqt">
-                                        <connections>
-                                            <action selector="actionButtonTapped:" destination="nDc-Gu-3a0" id="j9r-EH-CAh"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-favicon" translatesAutoresizingMaskIntoConstraints="NO" id="86Z-bJ-fny">
                                 <rect key="frame" x="10" y="15" width="16" height="16"/>
                                 <constraints>
@@ -131,7 +106,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GO-0y-75j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GO-0y-75j">
                                 <rect key="frame" x="34" y="47" width="446" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -178,6 +153,32 @@
                                     <constraint firstAttribute="height" constant="0.5" id="fqO-R6-UgA"/>
                                 </constraints>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2H-4k-9nI">
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="no2-tS-ILN"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KQn-tK-pJN"/>
+                                    <barButtonItem systemItem="add" id="joO-8A-juW">
+                                        <connections>
+                                            <action selector="bookmarkButtonTapped:" destination="nDc-Gu-3a0" id="qZJ-O2-B9n"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="XVf-to-31p"/>
+                                    <barButtonItem systemItem="organize" id="HwG-pY-hMT">
+                                        <connections>
+                                            <action selector="archiveButtonTapped:" destination="nDc-Gu-3a0" id="c04-Ml-Qc9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="U4U-LN-hhJ"/>
+                                    <barButtonItem systemItem="action" id="DR0-Y5-Nqt">
+                                        <connections>
+                                            <action selector="actionButtonTapped:" destination="nDc-Gu-3a0" id="j9r-EH-CAh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -231,11 +232,66 @@
                         <outlet property="photoWidth" destination="NuV-WY-Ncv" id="fIs-U4-ise"/>
                         <outlet property="url" destination="WZQ-jm-7Uy" id="gtd-Bl-UZm"/>
                         <outlet property="urlTopMargin" destination="GUc-DS-CqM" id="xd1-CW-3pH"/>
+                        <segue destination="421-fX-bGQ" kind="show" identifier="PushItemWebView" id="CWA-VX-j2L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qno-0b-ugt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="431"/>
+            <point key="canvasLocation" x="362" y="431"/>
+        </scene>
+        <!--Item Web View Controller-->
+        <scene sceneID="nOm-51-mGt">
+            <objects>
+                <viewController id="421-fX-bGQ" customClass="ItemWebViewController" customModule="Pokebu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="No2-7E-Pz9"/>
+                        <viewControllerLayoutGuide type="bottom" id="zFL-mo-cEQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eBr-Kd-CIT">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zvj-Ma-2Od">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flL-tE-hur">
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="i2V-Vw-YWG"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem enabled="NO" image="back-button" id="QoA-ra-5Gv"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="FLR-ts-Nyo"/>
+                                    <barButtonItem systemItem="refresh" id="2Is-Tt-wsd"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Rby-WB-uPh"/>
+                                    <barButtonItem systemItem="add" id="IjK-6i-Vge"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="tAF-AO-wsn"/>
+                                    <barButtonItem systemItem="organize" id="uso-QD-sbo"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Kew-Sl-cnn"/>
+                                    <barButtonItem systemItem="action" id="d9g-J9-5Zm"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zvj-Ma-2Od" firstAttribute="top" secondItem="No2-7E-Pz9" secondAttribute="bottom" id="GNe-ZW-OXj"/>
+                            <constraint firstAttribute="trailing" secondItem="flL-tE-hur" secondAttribute="trailing" id="K5Q-Tf-oDV"/>
+                            <constraint firstItem="zvj-Ma-2Od" firstAttribute="leading" secondItem="eBr-Kd-CIT" secondAttribute="leading" id="TEX-DJ-oHK"/>
+                            <constraint firstItem="zFL-mo-cEQ" firstAttribute="top" secondItem="zvj-Ma-2Od" secondAttribute="bottom" id="bvy-rz-THN"/>
+                            <constraint firstAttribute="trailing" secondItem="zvj-Ma-2Od" secondAttribute="trailing" id="cml-cU-570"/>
+                            <constraint firstItem="flL-tE-hur" firstAttribute="leading" secondItem="eBr-Kd-CIT" secondAttribute="leading" id="dJ4-Oe-QN3"/>
+                            <constraint firstItem="zFL-mo-cEQ" firstAttribute="top" secondItem="flL-tE-hur" secondAttribute="bottom" id="rvI-VV-0bz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GJf-8X-Pgq"/>
+                    <connections>
+                        <outlet property="webView" destination="zvj-Ma-2Od" id="u7E-Zb-3lL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="slQ-zs-yyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1040" y="431"/>
         </scene>
         <!--設定-->
         <scene sceneID="wEh-fw-jYy">
@@ -363,6 +419,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back-button" width="12" height="20"/>
         <image name="no-favicon" width="8" height="8"/>
     </resources>
 </document>

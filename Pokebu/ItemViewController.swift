@@ -22,7 +22,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var bookmarkViewButton: UIButton!
     
     @IBOutlet weak var excerptLeftMargin: NSLayoutConstraint!
-    
     @IBOutlet weak var photoWidth: NSLayoutConstraint!
     @IBOutlet weak var photoHeight: NSLayoutConstraint!
     @IBOutlet weak var photoLeftMargin: NSLayoutConstraint!
@@ -184,6 +183,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     // MARK: - TTTAttributedLabel delegate
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
+        performSegueWithIdentifier("PushItemWebView", sender: url)
     }
     
     // MARK: - IBAction
@@ -222,14 +222,16 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         presentShareActionSheet()
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PushItemWebView" {
+            let webViewController = segue.destinationViewController as! ItemWebViewController
+            if let url = sender as? NSURL {
+                webViewController.item = item
+                webViewController.url = url
+            }
+        }
     }
-    */
 
 }

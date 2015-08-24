@@ -38,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        //  キャッシュクリア
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
+        NSURLCache.sharedURLCache().diskCapacity = 0
+        NSURLCache.sharedURLCache().memoryCapacity = 0
+        
         return true
     }
 

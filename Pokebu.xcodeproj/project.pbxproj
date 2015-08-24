@@ -20,6 +20,7 @@
 		F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */; };
 		F2472A0E1B7D81F600B6B2A5 /* ItemListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2472A0D1B7D81F600B6B2A5 /* ItemListTableViewController.swift */; };
 		F2472A101B7D82D500B6B2A5 /* ItemListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2472A0F1B7D82D500B6B2A5 /* ItemListTableViewCell.swift */; };
+		F247BF111B8B42180051DCE8 /* ItemWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F247BF101B8B42180051DCE8 /* ItemWebViewController.swift */; };
 		F2D4E6B41B82ACD900D2B5BA /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D4E6B31B82ACD900D2B5BA /* SettingTableViewController.swift */; };
 		F2D4E6B61B82B6F900D2B5BA /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D4E6B51B82B6F900D2B5BA /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketApiAccess.swift; sourceTree = "<group>"; };
 		F2472A0D1B7D81F600B6B2A5 /* ItemListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableViewController.swift; sourceTree = "<group>"; };
 		F2472A0F1B7D82D500B6B2A5 /* ItemListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableViewCell.swift; sourceTree = "<group>"; };
+		F247BF101B8B42180051DCE8 /* ItemWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWebViewController.swift; sourceTree = "<group>"; };
 		F2D4E6B31B82ACD900D2B5BA /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		F2D4E6B51B82B6F900D2B5BA /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		F52B2E7048D20815D6B12E5C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				F2472A0F1B7D82D500B6B2A5 /* ItemListTableViewCell.swift */,
 				F2472A0D1B7D81F600B6B2A5 /* ItemListTableViewController.swift */,
 				F2D4E6B51B82B6F900D2B5BA /* ItemViewController.swift */,
+				F247BF101B8B42180051DCE8 /* ItemWebViewController.swift */,
 			);
 			name = ItemList;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				701CC4C61B882C300038394D /* UIAlertController.swift in Sources */,
 				F2D4E6B41B82ACD900D2B5BA /* SettingTableViewController.swift in Sources */,
 				F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */,
+				F247BF111B8B42180051DCE8 /* ItemWebViewController.swift in Sources */,
 				F205F96E1B7CE5E400F949E3 /* PocketItem.swift in Sources */,
 				F2472A101B7D82D500B6B2A5 /* ItemListTableViewCell.swift in Sources */,
 				F2472A0E1B7D81F600B6B2A5 /* ItemListTableViewController.swift in Sources */,
