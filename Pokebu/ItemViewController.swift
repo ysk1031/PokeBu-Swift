@@ -22,9 +22,11 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var bookmarkViewButton: UIButton!
     
     @IBOutlet weak var excerptLeftMargin: NSLayoutConstraint!
-    @IBOutlet weak var excerptRightMargin: NSLayoutConstraint!
+    
     @IBOutlet weak var photoWidth: NSLayoutConstraint!
     @IBOutlet weak var photoHeight: NSLayoutConstraint!
+    @IBOutlet weak var photoLeftMargin: NSLayoutConstraint!
+    @IBOutlet weak var photoRightMargin: NSLayoutConstraint!
     @IBOutlet weak var urlTopMargin: NSLayoutConstraint!
     
     var encodedUrl: String?
@@ -49,6 +51,27 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        // 写真がない時のAutoLayoutの値を変更
+        if item.imgSrc == nil {
+            photoWidth.constant = 0
+            photoHeight.constant = 0
+            photoRightMargin.constant = 0
+        }
+        
+        // excerptラベルの高さ算出
+        let excerptLabelHeight: CGFloat = heightForLabelText(excerpt.text!,
+            font: excerpt.font,
+            width: view.bounds.size.width - excerptLeftMargin.constant -
+                (photoLeftMargin.constant + photoWidth.constant + photoRightMargin.constant)
+        )
+        
+        // 写真があってexcerptラベルの高さが写真より低い時は、urlの表示位置を変更
+        if item.imgSrc != nil && excerptLabelHeight < photo.frame.size.height {
+            urlTopMargin.constant = 10 + photo.frame.size.height - excerptLabelHeight
+        }
+    }
+    
     // MARK: - Application logic
     
     func setItemView() {
@@ -71,34 +94,13 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         // 抜粋
         excerpt.text = item.excerpt
         
-        // 抜粋文ラベルの高さ算出
-        let excerptLabelHeight: CGFloat
-        if item.imgSrc == nil {
-            excerptLabelHeight = heightForLabelText(excerpt.text!,
-                font: excerpt.font,
-                width: view.bounds.size.width - excerptLeftMargin.constant - excerptRightMargin.constant
-            )
-        } else {
-            excerptLabelHeight = heightForLabelText(excerpt.text!,
-                font: excerpt.font,
-                width: view.bounds.size.width - excerptLeftMargin.constant - excerptRightMargin.constant
-            )
-        }
-        
         // 写真
         if let imageUrl = item.imgSrc {
             let encodedImageUrl: String? = imageUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             photo.sd_setImageWithURL(NSURL(string: encodedImageUrl!))
-        } else {
-            excerptRightMargin.constant = 10
-            photoWidth.constant = 0
-            photoHeight.constant = 0
         }
         
         // URL
-        if photoHeight.constant > 0 && excerptLabelHeight < photo.frame.size.height {
-            urlTopMargin.constant = 10 + photo.frame.size.height - excerptLabelHeight
-        }
         url.text = item.url
         
         // 追加日

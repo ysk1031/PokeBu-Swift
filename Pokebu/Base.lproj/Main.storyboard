@@ -211,17 +211,23 @@
                             <constraint firstAttribute="trailing" secondItem="BZk-rD-DPE" secondAttribute="trailing" constant="10" id="uxJ-qO-3A4"/>
                             <constraint firstItem="db7-UY-F5g" firstAttribute="leading" secondItem="2GO-0y-75j" secondAttribute="trailing" constant="10" id="x6f-ix-Rah"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="V8b-Or-jfC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="bookmarkViewButton" destination="w8b-M5-dXK" id="qb3-gb-xPO"/>
                         <outlet property="date" destination="cc2-ar-S0d" id="K07-qF-fCF"/>
                         <outlet property="excerpt" destination="2GO-0y-75j" id="GHE-xi-n9I"/>
                         <outlet property="excerptLeftMargin" destination="f0W-Cg-aQB" id="ray-xy-nMn"/>
-                        <outlet property="excerptRightMargin" destination="V8b-Or-jfC" id="15H-xB-NrP"/>
                         <outlet property="favicon" destination="86Z-bJ-fny" id="ODj-7y-2P4"/>
                         <outlet property="itemTitle" destination="B1S-06-yWI" id="BB2-sD-CNq"/>
                         <outlet property="photo" destination="db7-UY-F5g" id="FPT-GE-m31"/>
                         <outlet property="photoHeight" destination="PsZ-Me-HT0" id="PA5-lt-O6R"/>
+                        <outlet property="photoLeftMargin" destination="x6f-ix-Rah" id="ZRz-Qm-jzU"/>
+                        <outlet property="photoRightMargin" destination="6WI-bu-mgR" id="wZg-XK-AYm"/>
                         <outlet property="photoWidth" destination="NuV-WY-Ncv" id="fIs-U4-ise"/>
                         <outlet property="url" destination="WZQ-jm-7Uy" id="gtd-Bl-UZm"/>
                         <outlet property="urlTopMargin" destination="GUc-DS-CqM" id="xd1-CW-3pH"/>
