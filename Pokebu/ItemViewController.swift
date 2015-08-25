@@ -37,6 +37,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     }
     var index: Int?
     var apiAccess: PocketApiAccess = PocketApiAccess()
+    var itemOperation: PocketItemOperation = PocketItemOperation()
     var bookmarkCount: Int = 0
 
     override func viewDidLoad() {
@@ -44,6 +45,8 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
 
         itemTitle.delegate = self
         setItemView()
+        
+        itemOperation = PocketItemOperation(item: item, itemIndex: index, encodedUrl: encodedUrl, apiAccess: apiAccess)
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,15 +127,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         return label.frame.height
     }
     
-    func presentShareActionSheet() {
-        let activityController = UIActivityViewController(
-            activityItems: [item.title, encodedUrl!],
-            applicationActivities: nil
-        )
-
-        presentViewController(activityController, animated: true, completion: nil)
-    }
-    
     func bookmarkCountButtonText() -> NSMutableAttributedString {
         let boldTextRange = NSMakeRange(0, NSAttributedString(string: String(bookmarkCount)).length)
         let mutableText: NSMutableAttributedString = NSMutableAttributedString(
@@ -197,37 +191,15 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     // MARK: - IBAction
     
     @IBAction func bookmarkButtonTapped(sender: UIBarButtonItem) {
-        let hatenaBookmarkViewController = HTBHatenaBookmarkViewController()
-        hatenaBookmarkViewController.URL = NSURL(string: encodedUrl!)
-        presentViewController(hatenaBookmarkViewController, animated: true, completion: nil)
+        itemOperation.hatenaBookmarkOnViewController(self)
     }
     
     @IBAction func archiveButtonTapped(sender: UIBarButtonItem) {
-        let alert = UIAlertController(
-            title: "確認",
-            message: "この記事をアーカイブしますか？",
-            preferredStyle: UIAlertControllerStyle.ActionSheet
-        )
-        let okAction = UIAlertAction(
-            title: "OK",
-            style: UIAlertActionStyle.Default,
-            handler: { action in
-                self.navigationController?.popToRootViewControllerAnimated(true)
-                self.apiAccess.archiveItemAtIndex(self.index!, itemId: self.item.id)
-            }
-        )
-        let cancelAction = UIAlertAction(
-            title: "キャンセル",
-            style: UIAlertActionStyle.Cancel,
-            handler: { action in return }
-        )
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        presentViewController(alert, animated: true, completion: nil)
+        itemOperation.archiveOnViewController(self)
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
-        presentShareActionSheet()
+        itemOperation.showActionSheetOnViewController(self)
     }
 
     // MARK: - Navigation
@@ -238,6 +210,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
             if let url = sender as? NSURL {
                 webViewController.item = item
                 webViewController.url = url
+                webViewController.itemOperation = itemOperation
             }
         }
     }

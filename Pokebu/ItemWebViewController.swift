@@ -11,9 +11,11 @@ import NJKWebViewProgress
 
 class ItemWebViewController: UIViewController, UIWebViewDelegate, NJKWebViewProgressDelegate {
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     var item: PocketItem?
     var url: NSURL?
+    var itemOperation: PocketItemOperation?
     var progressView: NJKWebViewProgressView = NJKWebViewProgressView()
     var progressProxy: NJKWebViewProgress = NJKWebViewProgress()
 
@@ -62,12 +64,40 @@ class ItemWebViewController: UIViewController, UIWebViewDelegate, NJKWebViewProg
         progressView = NJKWebViewProgressView(frame: barFrame)
     }
     
+    // MARK: - UIWebView delegate
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        backButton.enabled = webView.canGoBack
+    }
+    
     // MARK: - NJKWebViewProgress delegate
         
     func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
         progressView.setProgress(progress, animated: true)
     }
+    
+    // MARK: - IBAction
+    
+    @IBAction func backButtonTapped(sender: UIBarButtonItem) {
+        webView.goBack()
+    }
+    
+    @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
+        webView.reload()
+    }
 
+    @IBAction func bookmarkButtonTapped(sender: UIBarButtonItem) {
+        itemOperation?.hatenaBookmarkOnViewController(self)
+    }
+    
+    @IBAction func archiveButtonTapped(sender: UIBarButtonItem) {
+        itemOperation?.archiveOnViewController(self)
+    }
+    
+    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
+        itemOperation?.showActionSheetOnViewController(self)
+    }
+    
     /*
     // MARK: - Navigation
 

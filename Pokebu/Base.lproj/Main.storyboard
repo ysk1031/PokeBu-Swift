@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kez-Vd-go1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kez-Vd-go1">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
     </dependencies>
     <scenes>
         <!--My Pocket-->
@@ -261,15 +261,35 @@
                                     <constraint firstAttribute="height" constant="44" id="i2V-Vw-YWG"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem enabled="NO" image="back-button" id="QoA-ra-5Gv"/>
+                                    <barButtonItem enabled="NO" image="back-button" id="QoA-ra-5Gv">
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="421-fX-bGQ" id="2Jv-4B-Xq6"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="FLR-ts-Nyo"/>
-                                    <barButtonItem systemItem="refresh" id="2Is-Tt-wsd"/>
+                                    <barButtonItem systemItem="refresh" id="2Is-Tt-wsd">
+                                        <connections>
+                                            <action selector="reloadButtonTapped:" destination="421-fX-bGQ" id="fbr-aO-SXR"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Rby-WB-uPh"/>
-                                    <barButtonItem systemItem="add" id="IjK-6i-Vge"/>
+                                    <barButtonItem systemItem="add" id="IjK-6i-Vge">
+                                        <connections>
+                                            <action selector="bookmarkButtonTapped:" destination="421-fX-bGQ" id="GeI-05-MJe"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="tAF-AO-wsn"/>
-                                    <barButtonItem systemItem="organize" id="uso-QD-sbo"/>
+                                    <barButtonItem systemItem="organize" id="uso-QD-sbo">
+                                        <connections>
+                                            <action selector="archiveButtonTapped:" destination="421-fX-bGQ" id="UZZ-yH-CXU"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Kew-Sl-cnn"/>
-                                    <barButtonItem systemItem="action" id="d9g-J9-5Zm"/>
+                                    <barButtonItem systemItem="action" id="d9g-J9-5Zm">
+                                        <connections>
+                                            <action selector="actionButtonTapped:" destination="421-fX-bGQ" id="SkA-et-bWF"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -286,6 +306,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="GJf-8X-Pgq"/>
                     <connections>
+                        <outlet property="backButton" destination="QoA-ra-5Gv" id="gZZ-95-bYh"/>
                         <outlet property="webView" destination="zvj-Ma-2Od" id="u7E-Zb-3lL"/>
                     </connections>
                 </viewController>
