@@ -38,7 +38,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 97531ad0137a335653c83bb911bae33c67621f1e
+    :commit: e489c5fece971352b05b6ef185eca53f68bee1bc
     :git: git@github.com:Alamofire/Alamofire.git
   HatenaBookmarkSDK:
     :commit: 9f6af4ea96f63f0d08b757c1fdf58c432e3f6168
@@ -47,7 +47,7 @@ CHECKOUT OPTIONS:
     :commit: 47ffff591a02f780f1928e3fba10e0f7f68cf132
     :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
   SwiftyJSON:
-    :commit: d2455075224731f0449366c71e1a08d10d718e6d
+    :commit: f269523ac572979245baa99c8475eab73caf1e9b
     :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
