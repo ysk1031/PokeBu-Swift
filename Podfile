@@ -8,6 +8,7 @@ pod 'SDWebImage'
 pod 'TTTAttributedLabel'
 pod 'DateTools'
 pod 'HatenaBookmarkSDK', git: 'git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git'
+pod 'NJKWebViewProgress'
 
 plugin 'cocoapods-keys', {
   project: 'Pokebu',

@@ -11,6 +11,7 @@ import TTTAttributedLabel
 import SDWebImage
 import DateTools
 import HatenaBookmarkSDK
+//import SafariServices
 
 class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     @IBOutlet weak var favicon: UIImageView!
@@ -184,6 +185,13 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
         performSegueWithIdentifier("PushItemWebView", sender: url)
+        
+//        if #available(iOS 9.0, *) {
+//            let safariViewController: SFSafariViewController = SFSafariViewController(URL: url)
+//            presentViewController(safariViewController, animated: true, completion: nil)
+//        } else {
+            // Fallback on earlier versions
+//        }
     }
     
     // MARK: - IBAction
