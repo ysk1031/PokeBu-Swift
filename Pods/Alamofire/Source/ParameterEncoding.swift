@@ -88,7 +88,6 @@ public enum ParameterEncoding {
                     components += queryComponents(key, value)
                 }
 
-//                return "&".join(components.map { "\($0)=\($1)" } as [String])
                 return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
             }
 

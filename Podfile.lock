@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (2.0.0-beta.1)
+  - Alamofire (2.0.0-beta.2)
   - DateTools (1.6.1)
   - HatenaBookmarkSDK (1.2):
     - SFHFKeychainUtils
@@ -44,7 +44,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: e489c5fece971352b05b6ef185eca53f68bee1bc
+    :commit: 2f94c11bb039bd7e3e43b925e20c8e536c9be757
     :git: git@github.com:Alamofire/Alamofire.git
   HatenaBookmarkSDK:
     :commit: 9f6af4ea96f63f0d08b757c1fdf58c432e3f6168
@@ -57,7 +57,7 @@ CHECKOUT OPTIONS:
     :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 96feccc1e48a735edb92395cf023ba4ed52bdb45
+  Alamofire: 4dab60b015e8b4c9e09b0c9ff514fb15b96c0bd5
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   HatenaBookmarkSDK: 832cad8358ab6cf246ca1aa3e3ca6e6df7e78eb4
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe

@@ -58,7 +58,6 @@ public class Manager {
                 }
             }
 
-//            return ",".join(components)
             return components.joinWithSeparator(",")
         }()
 
