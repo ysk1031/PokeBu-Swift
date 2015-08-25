@@ -190,6 +190,10 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     
     // MARK: - IBAction
     
+    @IBAction func bookmarkCommentViewButtonTapped(sender: UIButton) {
+        performSegueWithIdentifier("PresentBookmarkComment", sender: encodedUrl)
+    }
+    
     @IBAction func bookmarkButtonTapped(sender: UIBarButtonItem) {
         itemOperation.hatenaBookmarkOnViewController(self)
     }
@@ -211,6 +215,12 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
                 webViewController.item = item
                 webViewController.url = url
                 webViewController.itemOperation = itemOperation
+            }
+        }
+        if segue.identifier == "PresentBookmarkComment" {
+            let viewController = segue.destinationViewController.childViewControllers.first as! BookmarkTableViewController
+            if let url = sender as? String {
+                viewController.url = url
             }
         }
     }

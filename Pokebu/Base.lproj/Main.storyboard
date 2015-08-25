@@ -145,6 +145,9 @@
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="bookmarkCommentViewButtonTapped:" destination="nDc-Gu-3a0" eventType="touchUpInside" id="fUa-OW-CS4"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZk-rD-DPE">
                                 <rect key="frame" x="10" y="162" width="580" height="1"/>
@@ -233,11 +236,93 @@
                         <outlet property="url" destination="WZQ-jm-7Uy" id="gtd-Bl-UZm"/>
                         <outlet property="urlTopMargin" destination="GUc-DS-CqM" id="xd1-CW-3pH"/>
                         <segue destination="421-fX-bGQ" kind="show" identifier="PushItemWebView" id="CWA-VX-j2L"/>
+                        <segue destination="uT0-aM-r4L" kind="presentation" identifier="PresentBookmarkComment" id="s3t-G5-5su"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qno-0b-ugt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="362" y="431"/>
+        </scene>
+        <!--ブックマーク-->
+        <scene sceneID="JKG-qV-Wov">
+            <objects>
+                <tableViewController id="Gwc-7i-LV3" customClass="BookmarkTableViewController" customModule="Pokebu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="umo-q9-ENX">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Bookmark" id="fXX-wm-AK3" customClass="BookmarkTableViewCell" customModule="Pokebu" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fXX-wm-AK3" id="FBg-Ea-VJR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KgT-VH-bWp">
+                                            <rect key="frame" x="10" y="10" width="48" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="HDt-Jz-1oh"/>
+                                                <constraint firstAttribute="width" constant="48" id="aE7-fl-PY8"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bQ-Qc-bOV">
+                                            <rect key="frame" x="64" y="10" width="38" height="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KgT-VH-bWp" firstAttribute="top" secondItem="FBg-Ea-VJR" secondAttribute="top" constant="10" id="3hv-YY-k5o"/>
+                                        <constraint firstItem="KgT-VH-bWp" firstAttribute="leading" secondItem="FBg-Ea-VJR" secondAttribute="leading" constant="10" id="itP-Ak-Gim"/>
+                                        <constraint firstItem="2bQ-Qc-bOV" firstAttribute="top" secondItem="FBg-Ea-VJR" secondAttribute="top" constant="10" id="wDt-Tj-OVK"/>
+                                        <constraint firstItem="2bQ-Qc-bOV" firstAttribute="leading" secondItem="KgT-VH-bWp" secondAttribute="trailing" constant="6" id="wbU-Ns-GxR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="name" destination="2bQ-Qc-bOV" id="6de-tR-IKu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Gwc-7i-LV3" id="Jkz-DA-1hP"/>
+                            <outlet property="delegate" destination="Gwc-7i-LV3" id="yoN-b2-Isx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="ブックマーク" id="L8S-a0-HQj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="AcO-D2-74k">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="Gwc-7i-LV3" id="Asc-aV-Gmf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o1i-cD-tbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747" y="-268"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WLz-wX-Gz8">
+            <objects>
+                <navigationController id="uT0-aM-r4L" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ZuY-je-klO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.30588235289999999" green="0.72156862749999995" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Gwc-7i-LV3" kind="relationship" relationship="rootViewController" id="YlC-lo-8or"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tub-II-ane" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1040" y="-268"/>
         </scene>
         <!--Item Web View Controller-->
         <scene sceneID="nOm-51-mGt">
