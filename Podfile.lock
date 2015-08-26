@@ -1,6 +1,7 @@
 PODS:
-  - Alamofire (2.0.0-beta.2)
+  - Alamofire (2.0.0-beta.3)
   - DateTools (1.6.1)
+  - DZNEmptyDataSet (1.7.1)
   - HatenaBookmarkSDK (1.2):
     - SFHFKeychainUtils
   - Keys (1.0.0)
@@ -20,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
   - DateTools
+  - DZNEmptyDataSet
   - HatenaBookmarkSDK (from `git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git`)
   - Keys (from `Pods/CocoaPodsKeys`)
   - NJKWebViewProgress
@@ -44,7 +46,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 2f94c11bb039bd7e3e43b925e20c8e536c9be757
+    :commit: 0fd77fec2a33e237ab99069c36410eb7101126c6
     :git: git@github.com:Alamofire/Alamofire.git
   HatenaBookmarkSDK:
     :commit: 9f6af4ea96f63f0d08b757c1fdf58c432e3f6168
@@ -57,8 +59,9 @@ CHECKOUT OPTIONS:
     :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 4dab60b015e8b4c9e09b0c9ff514fb15b96c0bd5
+  Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
+  DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   HatenaBookmarkSDK: 832cad8358ab6cf246ca1aa3e3ca6e6df7e78eb4
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d

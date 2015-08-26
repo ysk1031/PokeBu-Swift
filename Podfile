@@ -9,6 +9,7 @@ pod 'TTTAttributedLabel'
 pod 'DateTools'
 pod 'HatenaBookmarkSDK', git: 'git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git'
 pod 'NJKWebViewProgress'
+pod 'DZNEmptyDataSet'
 
 plugin 'cocoapods-keys', {
   project: 'Pokebu',

@@ -53,6 +53,7 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/DZNEmptyDataSet.framework'
   install_framework 'Pods/DateTools.framework'
   install_framework 'Pods/HatenaBookmarkSDK.framework'
   install_framework 'Pods/Keys.framework'
@@ -65,6 +66,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/DZNEmptyDataSet.framework'
   install_framework 'Pods/DateTools.framework'
   install_framework 'Pods/HatenaBookmarkSDK.framework'
   install_framework 'Pods/Keys.framework'
