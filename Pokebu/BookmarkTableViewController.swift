@@ -9,15 +9,22 @@
 import UIKit
 
 class BookmarkTableViewController: UITableViewController {
+    let baseCellHeight: CGFloat = 68.0
+    let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     var url: String?
     var apiAccess: HatenaApiAccess = HatenaApiAccess()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showIndicator()
+        tableView.allowsSelection = false
+                
         NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.HAAFetchCompleteNotification,
             object: nil,
             queue: nil, usingBlock: { (notification: NSNotification) in
+                self.hideIndicator()
                 self.tableView.reloadData()
                 
                 if notification.userInfo != nil {
@@ -37,6 +44,42 @@ class BookmarkTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Application logic
+    
+    func showIndicator() {
+        fetchingIndicator.frame = CGRectMake(0, 0, view.frame.size.width / 2, view.frame.size.height / 2)
+        tableView.tableFooterView = fetchingIndicator
+        fetchingIndicator.startAnimating()
+    }
+    
+    func hideIndicator() {
+        fetchingIndicator.stopAnimating()
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            let bookmark = apiAccess.bookmarks[indexPath.row]
+            if bookmark.comment != nil {
+                // AutoLayoutの数値系を直書きしてるのでイマイチ
+                let commentWidth: CGFloat = tableView.bounds.size.width - (10 + 48 + 6 + 10)
+                let commentHeight: CGFloat = UILabel.heightForLabelText(bookmark.comment!,
+                    font: UIFont.systemFontOfSize(14.0),
+                    width: commentWidth
+                )
+                if commentHeight + 3 + 14 > 48 {
+                    return baseCellHeight + (commentHeight + 3 + 14 - 48)
+                }
+            }
+        }
+        return baseCellHeight
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return baseCellHeight
     }
 
     // MARK: - Table view data source

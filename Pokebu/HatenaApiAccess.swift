@@ -49,8 +49,6 @@ class HatenaApiAccess {
                     
                     let bookmark: HatenaBookmark = HatenaBookmark(userName: userName, comment: comment, userImage: userImage, addedTime: addedTime)
                     self.bookmarks.append(bookmark)
-                    
-//                    print(addedTime.timeAgoSinceNow())
                 }
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(self.HAAFetchCompleteNotification, object: nil)

@@ -18,6 +18,7 @@
 		709819DB1B871DD600C7EADC /* HatenaConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */; };
 		F205F96E1B7CE5E400F949E3 /* PocketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96D1B7CE5E400F949E3 /* PocketItem.swift */; };
 		F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */; };
+		F21143771B8D6CED0059101B /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21143761B8D6CED0059101B /* UILabel.swift */; settings = {ASSET_TAGS = (); }; };
 		F22BF4261B8C8C3A00505A92 /* BookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22BF4251B8C8C3A00505A92 /* BookmarkTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		F22BF4281B8C933B00505A92 /* HatenaBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22BF4271B8C933B00505A92 /* HatenaBookmark.swift */; settings = {ASSET_TAGS = (); }; };
 		F22BF42A1B8C963000505A92 /* HatenaApiAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22BF4291B8C963000505A92 /* HatenaApiAccess.swift */; settings = {ASSET_TAGS = (); }; };
@@ -68,6 +69,7 @@
 		E97D44F310E211F734D18E1C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F205F96D1B7CE5E400F949E3 /* PocketItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketItem.swift; sourceTree = "<group>"; };
 		F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketApiAccess.swift; sourceTree = "<group>"; };
+		F21143761B8D6CED0059101B /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		F22BF4251B8C8C3A00505A92 /* BookmarkTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewController.swift; sourceTree = "<group>"; };
 		F22BF4271B8C933B00505A92 /* HatenaBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatenaBookmark.swift; sourceTree = "<group>"; };
 		F22BF4291B8C963000505A92 /* HatenaApiAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatenaApiAccess.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				701CC4C51B882C300038394D /* UIAlertController.swift */,
 				F22BF42B1B8CA7A500505A92 /* NSDate.swift */,
+				F21143761B8D6CED0059101B /* UILabel.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F21143771B8D6CED0059101B /* UILabel.swift in Sources */,
 				F2D4E6B61B82B6F900D2B5BA /* ItemViewController.swift in Sources */,
 				F22BF4281B8C933B00505A92 /* HatenaBookmark.swift in Sources */,
 				F29971C61B8C4768003779AF /* PocketItemOperation.swift in Sources */,

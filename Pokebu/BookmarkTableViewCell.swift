@@ -9,13 +9,20 @@
 import UIKit
 
 class BookmarkTableViewCell: UITableViewCell {
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var addedTime: UILabel!
+    @IBOutlet weak var comment: UILabel!
     
     var bookmark: HatenaBookmark? {
         didSet {
             if bookmark == nil { return }
             
-            name.text = bookmark?.userName
+            icon.sd_setImageWithURL(NSURL(string: (bookmark?.userImage)!))
+            icon.layer.cornerRadius = 24.0
+            userName.text = bookmark?.userName
+            addedTime.text = bookmark?.addedTime?.timeAgoSinceNow()
+            comment.text = bookmark?.comment
         }
     }
 

@@ -63,7 +63,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         }
         
         // excerptラベルの高さ算出
-        let excerptLabelHeight: CGFloat = heightForLabelText(excerpt.text!,
+        let excerptLabelHeight: CGFloat = UILabel.heightForLabelText(excerpt.text!,
             font: excerpt.font,
             width: view.bounds.size.width - excerptLeftMargin.constant -
                 (photoLeftMargin.constant + photoWidth.constant + photoRightMargin.constant)
@@ -115,16 +115,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
             forState: UIControlState.Normal
         )
         updateBookmarkCount()
-    }
-    
-    func heightForLabelText(text: String, font: UIFont, width: CGFloat) -> CGFloat {
-        let label: UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))
-        label.numberOfLines = 0
-        label.font = font
-        label.text = text
-        label.sizeToFit()
-        
-        return label.frame.height
     }
     
     func bookmarkCountButtonText() -> NSMutableAttributedString {
