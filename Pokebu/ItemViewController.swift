@@ -54,27 +54,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidLayoutSubviews() {
-        // 写真がない時のAutoLayoutの値を変更
-        if item.imgSrc == nil {
-            photoWidth.constant = 0
-            photoHeight.constant = 0
-            photoRightMargin.constant = 0
-        }
-        
-        // excerptラベルの高さ算出
-        let excerptLabelHeight: CGFloat = UILabel.heightForLabelText(excerpt.text!,
-            font: excerpt.font,
-            width: view.bounds.size.width - excerptLeftMargin.constant -
-                (photoLeftMargin.constant + photoWidth.constant + photoRightMargin.constant)
-        )
-        
-        // 写真があってexcerptラベルの高さが写真より低い時は、urlの表示位置を変更
-        if item.imgSrc != nil && excerptLabelHeight < photo.frame.size.height {
-            urlTopMargin.constant = 10 + photo.frame.size.height - excerptLabelHeight
-        }
-    }
-    
     // MARK: - Application logic
     
     func setItemView() {
@@ -101,6 +80,25 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         if let imageUrl = item.imgSrc {
             let encodedImageUrl: String? = imageUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             photo.sd_setImageWithURL(NSURL(string: encodedImageUrl!))
+        }
+        
+        // 写真がない時のAutoLayoutの値を変更
+        if item.imgSrc == nil {
+            photoWidth.constant = 0
+            photoHeight.constant = 0
+            photoRightMargin.constant = 0
+        }
+        
+        // excerptラベルの高さ算出
+        let excerptLabelHeight: CGFloat = UILabel.heightForLabelText(excerpt.text!,
+            font: excerpt.font,
+            width: view.bounds.size.width - excerptLeftMargin.constant -
+                (photoLeftMargin.constant + photoWidth.constant + photoRightMargin.constant)
+        )
+        
+        // 写真があってexcerptラベルの高さが写真より低い時は、urlの表示位置を変更
+        if item.imgSrc != nil && excerptLabelHeight < photo.frame.size.height {
+            urlTopMargin.constant = 10 + photo.frame.size.height - excerptLabelHeight
         }
         
         // URL
