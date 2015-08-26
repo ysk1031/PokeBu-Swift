@@ -7,24 +7,30 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class BookmarkTableViewController: UITableViewController {
+class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     let baseCellHeight: CGFloat = 68.0
     let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     var url: String?
     var apiAccess: HatenaApiAccess = HatenaApiAccess()
+    var emptyDataTitle: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showIndicator()
         tableView.allowsSelection = false
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
                 
         NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.HAAFetchCompleteNotification,
             object: nil,
             queue: nil, usingBlock: { (notification: NSNotification) in
                 self.hideIndicator()
+                self.setEmptyDataDescriptionOnBookmarkCount(self.apiAccess.bookmarks.count)
                 self.tableView.reloadData()
                 
                 if notification.userInfo != nil {
@@ -56,6 +62,14 @@ class BookmarkTableViewController: UITableViewController {
     
     func hideIndicator() {
         fetchingIndicator.stopAnimating()
+    }
+    
+    func setEmptyDataDescriptionOnBookmarkCount(count: Int = 1) {
+        if count < 1 {
+            emptyDataTitle = "公開されているブックマークデータはありません。"
+        } else {
+            emptyDataTitle = ""
+        }
     }
     
     // MARK: - Table view delegate
@@ -104,6 +118,18 @@ class BookmarkTableViewController: UITableViewController {
         }
         return UITableViewCell()
     }
+    
+    // MARK: - DZNEmptyDataSet delegate
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let textAttributes: Dictionary = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+        ]
+        return NSAttributedString(string: emptyDataTitle, attributes: textAttributes)
+    }
+    
+    // MARK: - IBAction
     
     @IBAction func closeButtonTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
