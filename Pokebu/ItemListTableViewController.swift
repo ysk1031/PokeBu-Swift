@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class ItemListTableViewController: UITableViewController {
+class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     let cellHeight: CGFloat = 75.0
     let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     var apiAccess = PocketApiAccess()
     var refreshItemListObserver: NSObjectProtocol?
+    var emptyDataTitle: String = ""
+    var emptyDataButtonTitle: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,9 @@ class ItemListTableViewController: UITableViewController {
         refreshControl.addTarget(self, action: "refreshList:", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
         tableView.alwaysBounceVertical = true
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         
         displayIndicator()
         apiAccess.fetchData()
@@ -49,6 +55,7 @@ class ItemListTableViewController: UITableViewController {
             queue: nil,
             usingBlock: { notification in
                 self.hideIndicator()
+                self.setEmptyDataDescriptionOnItemCount(self.apiAccess.items.count)
                 self.tableView.reloadData()
                 
                 // 通信エラー時の処理
@@ -83,6 +90,8 @@ class ItemListTableViewController: UITableViewController {
                                 // tableViewからセル削除
                                 let deletedIndexPath: NSIndexPath = NSIndexPath(forRow: archivedItemIndex, inSection: 0)
                                 self.tableView.deleteRowsAtIndexPaths([deletedIndexPath], withRowAnimation: .Middle)
+                                
+                                self.setEmptyDataDescriptionOnItemCount(self.apiAccess.items.count)
                             })
                             
                             self.tableView.endUpdates()
@@ -144,6 +153,16 @@ class ItemListTableViewController: UITableViewController {
         )
         
         apiAccess.fetchData(refresh: true)
+    }
+    
+    func setEmptyDataDescriptionOnItemCount(count: Int = 1) {
+        if count < 1 {
+            emptyDataTitle = "保存している記事はありません。"
+            emptyDataButtonTitle = "再度読み込む"
+        } else {
+            emptyDataTitle = ""
+            emptyDataButtonTitle = ""
+        }
     }
     
     // MARK: - Table view data delegate
@@ -224,7 +243,35 @@ class ItemListTableViewController: UITableViewController {
         return true
     }
     */
+    
+    // MARK: - DZNEmptyDataSet delegate
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let textAttributes: Dictionary = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+        ]
+        return NSAttributedString(string: emptyDataTitle, attributes: textAttributes)
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let textAttributes: Dictionary = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14.0),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+        ]
+        return NSAttributedString(string: emptyDataButtonTitle, attributes: textAttributes)
+    }
 
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        // セルが空の時の表示をリセット
+        setEmptyDataDescriptionOnItemCount()
+        tableView.reloadData()
+        
+        // 再読み込み
+        displayIndicator()
+        apiAccess.fetchData()
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
