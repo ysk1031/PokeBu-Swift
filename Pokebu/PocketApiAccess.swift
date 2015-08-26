@@ -151,7 +151,7 @@ class PocketApiAccess {
             "access_token": accessToken
         ]
         let json = JSON(["action": "archive", "item_id": itemId])
-        requestParams["actions"] = [String(json)].description
+        requestParams["actions"] = String([json])
         
         Alamofire.request(.GET, methodUrl, parameters: requestParams).response {
             request, response, data, error in
