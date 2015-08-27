@@ -46,6 +46,8 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         itemTitle.delegate = self
         setItemView()
         
+        itemTitle.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "actionButtonTapped:"))
+        
         itemOperation = PocketItemOperation(item: item, itemIndex: index, encodedUrl: encodedUrl, apiAccess: apiAccess)
     }
 
