@@ -8,8 +8,9 @@
 
 import UIKit
 import SDWebImage
+import SWTableViewCell
 
-class ItemListTableViewCell: UITableViewCell {
+class ItemListTableViewCell: SWTableViewCell {
     @IBOutlet weak var favicon: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var urlHost: UILabel!

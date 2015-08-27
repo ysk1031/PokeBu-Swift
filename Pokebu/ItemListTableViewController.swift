@@ -8,8 +8,9 @@
 
 import UIKit
 import DZNEmptyDataSet
+import SWTableViewCell
 
-class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, SWTableViewCellDelegate {
     let cellHeight: CGFloat = 75.0
     let fetchingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
@@ -155,6 +156,12 @@ class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource,
         apiAccess.fetchData(refresh: true)
     }
     
+    func cellRightButtons() -> NSArray {
+        let buttons: NSMutableArray = []
+        buttons.sw_addUtilityButtonWithColor(UIColor(red: 0.929, green: 0.251, blue: 0.333, alpha: 1.0), title: "Archive")
+        return buttons
+    }
+    
     func setEmptyDataDescriptionOnItemCount(count: Int = 1) {
         if count < 1 {
             emptyDataTitle = "保存している記事はありません。"
@@ -201,6 +208,10 @@ class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource,
                     displayIndicator()
                     apiAccess.fetchData()
                 }
+                
+                // Setting for SWTableViewCell
+                cell.rightUtilityButtons = cellRightButtons() as [AnyObject]
+                cell.delegate = self
                 
                 return cell
             }
@@ -270,6 +281,19 @@ class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource,
         // 再読み込み
         displayIndicator()
         apiAccess.fetchData()
+    }
+    
+    // MARK: - SWTableViewCell delegate
+    
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        switch index {
+        case 0:
+            let index: Int = (tableView.indexPathForCell(cell)?.row)!
+            let itemId: Int = apiAccess.items[index].id
+            apiAccess.archiveItemAtIndex(index, itemId: itemId)
+        default:
+            break
+        }
     }
     
     // MARK: - Navigation
