@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
+  - Bolts/Tasks (1.2.1)
   - DateTools (1.6.1)
   - DZNEmptyDataSet (1.7.1)
   - HatenaBookmarkSDK (1.2):
@@ -10,6 +11,8 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - Parse (1.8.1):
+    - Bolts/Tasks (>= 1.2.0)
   - PocketAPI (1.0.3)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - HatenaBookmarkSDK (from `git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git`)
   - Keys (from `Pods/CocoaPodsKeys`)
   - NJKWebViewProgress
+  - Parse
   - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
   - SDWebImage
   - SwiftyJSON (from `git@github.com:SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
@@ -62,11 +66,13 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
+  Bolts: 7686a5cb204d1ac54cee26f12d9b7622db3f80d1
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   HatenaBookmarkSDK: 832cad8358ab6cf246ca1aa3e3ca6e6df7e78eb4
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  Parse: 2155953b1565494095d5fa5c83b3c77f2c677c09
   PocketAPI: f65f80eee2b05d28aeecf711b0f5b87ee2be3e28
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
