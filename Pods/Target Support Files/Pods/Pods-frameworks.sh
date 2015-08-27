@@ -61,6 +61,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/PocketAPI.framework'
   install_framework 'Pods/SDWebImage.framework'
   install_framework 'Pods/SFHFKeychainUtils.framework'
+  install_framework 'Pods/SWTableViewCell.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/TTTAttributedLabel.framework'
 fi
@@ -74,6 +75,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/PocketAPI.framework'
   install_framework 'Pods/SDWebImage.framework'
   install_framework 'Pods/SFHFKeychainUtils.framework'
+  install_framework 'Pods/SWTableViewCell.framework'
   install_framework 'Pods/SwiftyJSON.framework'
   install_framework 'Pods/TTTAttributedLabel.framework'
 fi

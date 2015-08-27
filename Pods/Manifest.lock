@@ -16,6 +16,7 @@ PODS:
   - SDWebImage/Core (3.7.3)
   - SFHFKeychainUtils (0.0.1)
   - SwiftyJSON (2.2.1)
+  - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (1.13.4)
 
 DEPENDENCIES:
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - PocketAPI (from `git@github.com:Pocket/Pocket-ObjC-SDK.git`)
   - SDWebImage
   - SwiftyJSON (from `git@github.com:SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
+  - SWTableViewCell
   - TTTAttributedLabel
 
 EXTERNAL SOURCES:
@@ -69,6 +71,7 @@ SPEC CHECKSUMS:
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
 
 COCOAPODS: 0.38.2
