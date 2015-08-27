@@ -45,6 +45,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
 
         itemTitle.delegate = self
         setItemView()
+        updateBookmarkCount()
         
         itemTitle.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "actionButtonTapped:"))
         
@@ -54,6 +55,12 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self.item.BookmarkCountFetchCompleteNotification + "_\(self.item.id)"
+        )
     }
     
     // MARK: - Application logic
@@ -114,7 +121,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         bookmarkViewButton.setAttributedTitle(bookmarkCountButtonText(),
             forState: UIControlState.Normal
         )
-        updateBookmarkCount()
     }
     
     func bookmarkCountButtonText() -> NSMutableAttributedString {
@@ -139,11 +145,11 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     }
     
     func updateBookmarkCount() {
-        NSNotificationCenter.defaultCenter().addObserverForName(item.BookmarkCountFetchCompleteNotification,
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            item.BookmarkCountFetchCompleteNotification + "_\(item.id)",
             object: nil,
             queue: nil,
             usingBlock: { notification in
-                NSNotificationCenter.defaultCenter().removeObserver(self.item.BookmarkCountFetchCompleteNotification)
                 if notification.userInfo != nil {
                     if let userInfo = notification.userInfo as? [String: Int] {
                         if let bookmarkCount = userInfo["bookmarkCount"] {
