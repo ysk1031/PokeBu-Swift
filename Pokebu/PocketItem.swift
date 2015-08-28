@@ -39,7 +39,8 @@ class PocketItem {
                 if json == nil { return }
                 let bookmarkCount = Int(String(json))
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(self.BookmarkCountFetchCompleteNotification,
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    self.BookmarkCountFetchCompleteNotification + "_\(self.id)",
                     object: nil,
                     userInfo: ["bookmarkCount": bookmarkCount!]
                 )

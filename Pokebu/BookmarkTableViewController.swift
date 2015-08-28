@@ -25,8 +25,9 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-                
-        NSNotificationCenter.defaultCenter().addObserverForName(apiAccess.HAAFetchCompleteNotification,
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            apiAccess.HAAFetchCompleteNotification + "_\(url!)",
             object: nil,
             queue: nil, usingBlock: { (notification: NSNotification) in
                 self.hideIndicator()
@@ -43,8 +44,11 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
                 }
             }
         )
-        
         apiAccess.fetchBookmarkDataOf(url!)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(apiAccess.HAAFetchCompleteNotification + "_\(url!)")
     }
 
     override func didReceiveMemoryWarning() {

@@ -30,7 +30,8 @@ class HatenaApiAccess {
                     if let description = error?.localizedDescription {
                         message = description
                     }
-                    NSNotificationCenter.defaultCenter().postNotificationName(self.HAAFetchCompleteNotification,
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        self.HAAFetchCompleteNotification + "_\(url)",
                         object: nil,
                         userInfo: ["error": message]
                     )
@@ -51,7 +52,10 @@ class HatenaApiAccess {
                     self.bookmarks.append(bookmark)
                 }
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(self.HAAFetchCompleteNotification, object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    self.HAAFetchCompleteNotification + "_\(url)",
+                    object: nil
+                )
             }
         )
     }
