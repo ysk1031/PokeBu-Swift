@@ -10,6 +10,7 @@ import UIKit
 import PocketAPI
 import HatenaBookmarkSDK
 import Keys
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,8 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // PocketのAPIキー設定
-        let pocketSdkConsumerKey = PokebuKeys().pocketSdkConsumerKey()
-        PocketAPI.sharedAPI().consumerKey = pocketSdkConsumerKey
+        initPocketSdk()
+        
+        // ParseのAPIキー設定
+        initParseSdk()
+        
+        // Push設定
+        registerPushNotification(application, launchOptions: launchOptions)
+        
         
         // Pocketログイン状態の確認
         if PocketAPI.sharedAPI().loggedIn {
@@ -77,10 +84,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackgroundWithBlock(nil)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        if error.code == 3010 {
+            print("Push notifications are not supported in the iOS simulator.")
+        } else {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
+        if application.applicationState == UIApplicationState.Inactive {
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayloadInBackground(userInfo, block: nil)
+        }
+    }
+    
+    // Application logic
+    
+    func initPocketSdk() {
+        let pocketSdkConsumerKey = PokebuKeys().pocketSdkConsumerKey()
+        PocketAPI.sharedAPI().consumerKey = pocketSdkConsumerKey
+    }
+    
     func initHatenaBookmarkSdk() {
         let hatenaConsumerKey = PokebuKeys().hatenaConsumerKey()
         let hatenaConsumerSecret = PokebuKeys().hatenaConsumerSecret()
         HTBHatenaBookmarkManager.sharedManager().setConsumerKey(hatenaConsumerKey, consumerSecret: hatenaConsumerSecret)
+    }
+    
+    func initParseSdk() {
+        Parse.setApplicationId(PokebuKeys().parseApplicationId(), clientKey: PokebuKeys().parseClientKey())
+    }
+    
+    func registerPushNotification(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
+        if application.applicationState != UIApplicationState.Background {
+            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
+            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            var pushPayload = false
+            if let options = launchOptions {
+                pushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil
+            }
+            if preBackgroundPush || oldPushHandlerOnly || pushPayload {
+                PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+            }
+        }
+        
+        // 通知許可画面を出す
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(
+                forTypes: [.Alert, .Badge, .Sound],
+                categories: nil
+            )
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
     }
     
 }
