@@ -19,6 +19,8 @@ plugin 'cocoapods-keys', {
     PocketSdkConsumerKey
     HatenaConsumerKey
     HatenaConsumerSecret
+    ParseApplicationId
+    ParseClientKey
   }
 }
 
