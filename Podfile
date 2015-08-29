@@ -12,6 +12,7 @@ pod 'NJKWebViewProgress'
 pod 'DZNEmptyDataSet'
 pod 'SWTableViewCell'
 pod 'AttributedMarkdown', git: 'https://github.com/dreamwieber/AttributedMarkdown.git'
+pod 'VTAcknowledgementsViewController'
 
 plugin 'cocoapods-keys', {
   project: 'Pokebu',

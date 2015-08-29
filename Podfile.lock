@@ -19,6 +19,7 @@ PODS:
   - SwiftyJSON (2.2.1)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (1.13.4)
+  - VTAcknowledgementsViewController (0.14)
 
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - SwiftyJSON (from `git@github.com:SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - SWTableViewCell
   - TTTAttributedLabel
+  - VTAcknowledgementsViewController
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -81,5 +83,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
+  VTAcknowledgementsViewController: 11a869dd69598a852f12699aeaf36e2589d3fc1b
 
 COCOAPODS: 0.38.2
