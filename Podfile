@@ -11,6 +11,7 @@ pod 'HatenaBookmarkSDK', git: 'git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git
 pod 'NJKWebViewProgress'
 pod 'DZNEmptyDataSet'
 pod 'SWTableViewCell'
+pod 'AttributedMarkdown', git: 'https://github.com/dreamwieber/AttributedMarkdown.git'
 
 plugin 'cocoapods-keys', {
   project: 'Pokebu',

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
+  - AttributedMarkdown (0.9.2)
   - DateTools (1.6.1)
   - DZNEmptyDataSet (1.7.1)
   - HatenaBookmarkSDK (1.2):
@@ -21,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - AttributedMarkdown (from `https://github.com/dreamwieber/AttributedMarkdown.git`)
   - DateTools
   - DZNEmptyDataSet
   - HatenaBookmarkSDK (from `git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git`)
@@ -36,6 +38,8 @@ EXTERNAL SOURCES:
   Alamofire:
     :branch: swift-2.0
     :git: git@github.com:Alamofire/Alamofire.git
+  AttributedMarkdown:
+    :git: https://github.com/dreamwieber/AttributedMarkdown.git
   HatenaBookmarkSDK:
     :git: git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git
   Keys:
@@ -48,8 +52,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 0fd77fec2a33e237ab99069c36410eb7101126c6
+    :commit: 6a4e014844c6309040f49ec00fe1e7d356ab5ff5
     :git: git@github.com:Alamofire/Alamofire.git
+  AttributedMarkdown:
+    :commit: 6bf420df77117f519af32a6393520ead4e7848c6
+    :git: https://github.com/dreamwieber/AttributedMarkdown.git
   HatenaBookmarkSDK:
     :commit: 9f6af4ea96f63f0d08b757c1fdf58c432e3f6168
     :git: git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git
@@ -62,6 +69,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
+  AttributedMarkdown: ac5060667280be8cc8ee33a46c73e4ec6b17ca1a
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   HatenaBookmarkSDK: 832cad8358ab6cf246ca1aa3e3ca6e6df7e78eb4
