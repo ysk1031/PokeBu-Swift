@@ -8,6 +8,7 @@
 
 import UIKit
 import HatenaBookmarkSDK
+import PocketAPI
 
 class SettingTableViewController: UITableViewController {
     let sectionNumber: Int = 2
@@ -60,6 +61,16 @@ class SettingTableViewController: UITableViewController {
     }
     
     func authorizePocket() {
+        if PocketAPI.sharedAPI().loggedIn {
+            performSegueWithIdentifier("PushPocketConfig", sender: nil)
+        } else {
+            PocketAPI.sharedAPI().loginWithHandler({ api, error in
+                if error != nil {
+                    let alertView = UIAlertController.setRequestFailureMessage(error.localizedDescription)
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                }
+            })
+        }
     }
     
     func authorizeHatenaBookmark() {
