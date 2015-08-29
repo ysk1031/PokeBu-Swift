@@ -52,7 +52,7 @@ class AppInfoTableViewController: UITableViewController, SFSafariViewControllerD
     // MARK: - Application logic
     
     func showAppAbout() {
-        
+        performSegueWithIdentifier("PushAppAbout", sender: nil)
     }
     
     func showAppLicense() {

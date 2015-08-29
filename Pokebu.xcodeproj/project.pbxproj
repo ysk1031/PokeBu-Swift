@@ -18,6 +18,7 @@
 		7061462A1B9186A0008DB63A /* PocketConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706146291B9186A0008DB63A /* PocketConfigTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		7061462C1B9191FE008DB63A /* AppInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061462B1B9191FE008DB63A /* AppInfoTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		7061463A1B91CA2C008DB63A /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 706146391B91CA2C008DB63A /* Pods-acknowledgements.plist */; settings = {ASSET_TAGS = (); }; };
+		7061463C1B91F071008DB63A /* AppAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061463B1B91F071008DB63A /* AppAboutViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		709819DB1B871DD600C7EADC /* HatenaConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */; };
 		F205F96E1B7CE5E400F949E3 /* PocketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96D1B7CE5E400F949E3 /* PocketItem.swift */; };
 		F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */; };
@@ -70,6 +71,7 @@
 		706146291B9186A0008DB63A /* PocketConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketConfigTableViewController.swift; sourceTree = "<group>"; };
 		7061462B1B9191FE008DB63A /* AppInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoTableViewController.swift; sourceTree = "<group>"; };
 		706146391B91CA2C008DB63A /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-acknowledgements.plist"; path = "Pods/Target Support Files/Pods/Pods-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		7061463B1B91F071008DB63A /* AppAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAboutViewController.swift; sourceTree = "<group>"; };
 		709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatenaConfigTableViewController.swift; sourceTree = "<group>"; };
 		A7F11E82A15E42A0323C39A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E97D44F310E211F734D18E1C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 		F2D4E6B21B82ACA100D2B5BA /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				7061463B1B91F071008DB63A /* AppAboutViewController.swift */,
 				7061462B1B9191FE008DB63A /* AppInfoTableViewController.swift */,
 				709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */,
 				706146291B9186A0008DB63A /* PocketConfigTableViewController.swift */,
@@ -436,6 +439,7 @@
 				F22BF4261B8C8C3A00505A92 /* BookmarkTableViewController.swift in Sources */,
 				F2D4E6B41B82ACD900D2B5BA /* SettingTableViewController.swift in Sources */,
 				F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */,
+				7061463C1B91F071008DB63A /* AppAboutViewController.swift in Sources */,
 				F22BF42A1B8C963000505A92 /* HatenaApiAccess.swift in Sources */,
 				F247BF111B8B42180051DCE8 /* ItemWebViewController.swift in Sources */,
 				7061462A1B9186A0008DB63A /* PocketConfigTableViewController.swift in Sources */,
