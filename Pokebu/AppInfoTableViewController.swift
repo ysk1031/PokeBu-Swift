@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import HatenaBookmarkSDK
+import VTAcknowledgementsViewController
 
 class AppInfoTableViewController: UITableViewController, SFSafariViewControllerDelegate {
     let sectionNumber: Int = 3
@@ -55,7 +56,12 @@ class AppInfoTableViewController: UITableViewController, SFSafariViewControllerD
     }
     
     func showAppLicense() {
-        
+        let path = NSBundle.mainBundle().pathForResource("Pods-acknowledgements", ofType: "plist")
+        let viewController: VTAcknowledgementsViewController = VTAcknowledgementsViewController(acknowledgementsPlistPath: path)
+        viewController.title = "LICENSE"
+        viewController.headerText = "This App uses the following open source software.\n" +
+            "I thank open source community!!"
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func openUrl(url: NSURL) {
