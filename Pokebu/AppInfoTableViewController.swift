@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SafariServices
+import HatenaBookmarkSDK
 
-class AppInfoTableViewController: UITableViewController {
+class AppInfoTableViewController: UITableViewController, SFSafariViewControllerDelegate {
     let sectionNumber: Int = 3
     let sectionNames: Array = ["", "情報", "フィードバック"]
     let menusInSection: [String: Array] = [
@@ -44,6 +46,76 @@ class AppInfoTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Application logic
+    
+    func showAppAbout() {
+        
+    }
+    
+    func showAppLicense() {
+        
+    }
+    
+    func openUrl(url: NSURL) {
+        if #available(iOS 9.0, *) {
+            let safariViewController = SFSafariViewController(URL: url)
+            safariViewController.delegate = self
+            presentViewController(safariViewController, animated: true, completion: nil)
+        } else {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
+    func showMyBlog() {
+        let url: NSURL = NSURL(string: "http://yusuke-aono.hatenablog.com")!
+        openUrl(url)
+    }
+    
+    
+    func showAppStore() {
+        // FIX: 実機で試す
+//        let url: NSURL = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=981124596")!
+//        UIApplication.sharedApplication().openURL(url)
+    }
+    
+    func showGithub() {
+        let url: NSURL = NSURL(string: "https://github.com/ysk1031/PokeBu-Swift")!
+        openUrl(url)
+    }
+    
+    // MARK: - SFSafariViewControllerDelegate
+    
+    @available(iOS 9.0, *)
+    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity] {
+        let hatenaBookmarkActivity: HTBHatenaBookmarkActivity = HTBHatenaBookmarkActivity()
+        return [hatenaBookmarkActivity]
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.section < sectionNumber {
+            if let menus = menusInSection[sectionNames[indexPath.section]] {
+                switch menus[indexPath.row] {
+                case "About":
+                    showAppAbout()
+                case "LICENSE":
+                    showAppLicense()
+                case "開発者ブログ":
+                    showMyBlog()
+                case "App Store":
+                    showAppStore()
+                case "GitHub":
+                    showGithub()
+                default:
+                    break
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source
