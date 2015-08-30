@@ -16,6 +16,7 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
     var url: String?
     var apiAccess: HatenaApiAccess = HatenaApiAccess()
     var emptyDataTitle: String = ""
+    var bookmarkFetchCompleteObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         
-        NSNotificationCenter.defaultCenter().addObserverForName(
+        bookmarkFetchCompleteObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             apiAccess.HAAFetchCompleteNotification + "_\(url!)",
             object: nil,
             queue: nil, usingBlock: { (notification: NSNotification) in
@@ -48,7 +49,7 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(apiAccess.HAAFetchCompleteNotification + "_\(url!)")
+        NSNotificationCenter.defaultCenter().removeObserver(bookmarkFetchCompleteObserver!)
     }
 
     override func didReceiveMemoryWarning() {
