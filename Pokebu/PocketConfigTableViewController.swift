@@ -41,6 +41,10 @@ class PocketConfigTableViewController: UITableViewController {
                 PocketAPI.sharedAPI().logout()
                 
                 // ログイン前TOP画面に
+                let storyboard = UIStoryboard(name: "IntroView", bundle: nil)
+                let introViewController: IntroViewController = storyboard.instantiateInitialViewController() as! IntroViewController
+                introViewController.window = self.view.window
+                self.view.window?.rootViewController = introViewController
             }
         )
         let cancelAction = UIAlertAction(
