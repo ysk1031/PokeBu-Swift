@@ -15,7 +15,14 @@
 		70326C751B7BA65700B1790E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70326C731B7BA65700B1790E /* LaunchScreen.storyboard */; };
 		70326C801B7BA65700B1790E /* PokebuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70326C7F1B7BA65700B1790E /* PokebuTests.swift */; };
 		70326C8B1B7BA65700B1790E /* PokebuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70326C8A1B7BA65700B1790E /* PokebuUITests.swift */; };
+		7061462A1B9186A0008DB63A /* PocketConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706146291B9186A0008DB63A /* PocketConfigTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		7061462C1B9191FE008DB63A /* AppInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061462B1B9191FE008DB63A /* AppInfoTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		7061463A1B91CA2C008DB63A /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 706146391B91CA2C008DB63A /* Pods-acknowledgements.plist */; settings = {ASSET_TAGS = (); }; };
+		7061463C1B91F071008DB63A /* AppAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7061463B1B91F071008DB63A /* AppAboutViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		709819DB1B871DD600C7EADC /* HatenaConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */; };
+		70F5CFDD1B92A5C400135B75 /* IntroView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F5CFDC1B92A5C400135B75 /* IntroView.storyboard */; settings = {ASSET_TAGS = (); }; };
+		70F5CFE01B92A78600135B75 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F5CFDF1B92A78600135B75 /* IntroViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		70F5CFE21B92B27300135B75 /* CustomUiApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F5CFE11B92B27300135B75 /* CustomUiApplication.swift */; settings = {ASSET_TAGS = (); }; };
 		F205F96E1B7CE5E400F949E3 /* PocketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96D1B7CE5E400F949E3 /* PocketItem.swift */; };
 		F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = F205F96F1B7CE84200F949E3 /* PocketApiAccess.swift */; };
 		F21143771B8D6CED0059101B /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21143761B8D6CED0059101B /* UILabel.swift */; settings = {ASSET_TAGS = (); }; };
@@ -64,7 +71,14 @@
 		70326C8A1B7BA65700B1790E /* PokebuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokebuUITests.swift; sourceTree = "<group>"; };
 		70326C8C1B7BA65700B1790E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70326C991B7BA69E00B1790E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		706146291B9186A0008DB63A /* PocketConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketConfigTableViewController.swift; sourceTree = "<group>"; };
+		7061462B1B9191FE008DB63A /* AppInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoTableViewController.swift; sourceTree = "<group>"; };
+		706146391B91CA2C008DB63A /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-acknowledgements.plist"; path = "Pods/Target Support Files/Pods/Pods-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
+		7061463B1B91F071008DB63A /* AppAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAboutViewController.swift; sourceTree = "<group>"; };
 		709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HatenaConfigTableViewController.swift; sourceTree = "<group>"; };
+		70F5CFDC1B92A5C400135B75 /* IntroView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IntroView.storyboard; sourceTree = "<group>"; };
+		70F5CFDF1B92A78600135B75 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		70F5CFE11B92B27300135B75 /* CustomUiApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUiApplication.swift; sourceTree = "<group>"; };
 		A7F11E82A15E42A0323C39A4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E97D44F310E211F734D18E1C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F205F96D1B7CE5E400F949E3 /* PocketItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketItem.swift; sourceTree = "<group>"; };
@@ -113,8 +127,8 @@
 		701CC4C41B882C0A0038394D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				701CC4C51B882C300038394D /* UIAlertController.swift */,
 				F22BF42B1B8CA7A500505A92 /* NSDate.swift */,
+				701CC4C51B882C300038394D /* UIAlertController.swift */,
 				F21143761B8D6CED0059101B /* UILabel.swift */,
 			);
 			name = Extension;
@@ -148,12 +162,16 @@
 				70326C6A1B7BA65700B1790E /* AppDelegate.swift */,
 				70326C711B7BA65700B1790E /* Assets.xcassets */,
 				F22BF4241B8C8A5700505A92 /* Bookmark */,
+				70F5CFE11B92B27300135B75 /* CustomUiApplication.swift */,
 				701CC4C41B882C0A0038394D /* Extension */,
 				70326C761B7BA65700B1790E /* Info.plist */,
+				70F5CFDE1B92A5D100135B75 /* Introduction */,
+				70F5CFDC1B92A5C400135B75 /* IntroView.storyboard */,
 				70326C731B7BA65700B1790E /* LaunchScreen.storyboard */,
 				70326C6E1B7BA65700B1790E /* Main.storyboard */,
 				F205F96C1B7CE5C600F949E3 /* Model */,
 				F2E171C41B7CC0100016F8E9 /* PocketItem */,
+				706146391B91CA2C008DB63A /* Pods-acknowledgements.plist */,
 				F2D4E6B21B82ACA100D2B5BA /* Setting */,
 			);
 			path = Pokebu;
@@ -175,6 +193,14 @@
 				70326C8C1B7BA65700B1790E /* Info.plist */,
 			);
 			path = PokebuUITests;
+			sourceTree = "<group>";
+		};
+		70F5CFDE1B92A5D100135B75 /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				70F5CFDF1B92A78600135B75 /* IntroViewController.swift */,
+			);
+			name = Introduction;
 			sourceTree = "<group>";
 		};
 		8814277766A8C7E9CED45876 /* Frameworks */ = {
@@ -218,7 +244,10 @@
 		F2D4E6B21B82ACA100D2B5BA /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				7061463B1B91F071008DB63A /* AppAboutViewController.swift */,
+				7061462B1B9191FE008DB63A /* AppInfoTableViewController.swift */,
 				709819DA1B871DD600C7EADC /* HatenaConfigTableViewController.swift */,
+				706146291B9186A0008DB63A /* PocketConfigTableViewController.swift */,
 				F2D4E6B31B82ACD900D2B5BA /* SettingTableViewController.swift */,
 			);
 			name = Setting;
@@ -344,6 +373,8 @@
 				70326C751B7BA65700B1790E /* LaunchScreen.storyboard in Resources */,
 				70326C721B7BA65700B1790E /* Assets.xcassets in Resources */,
 				70326C701B7BA65700B1790E /* Main.storyboard in Resources */,
+				70F5CFDD1B92A5C400135B75 /* IntroView.storyboard in Resources */,
+				7061463A1B91CA2C008DB63A /* Pods-acknowledgements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,14 +450,19 @@
 				F21143771B8D6CED0059101B /* UILabel.swift in Sources */,
 				F2D4E6B61B82B6F900D2B5BA /* ItemViewController.swift in Sources */,
 				F22BF4281B8C933B00505A92 /* HatenaBookmark.swift in Sources */,
+				70F5CFE21B92B27300135B75 /* CustomUiApplication.swift in Sources */,
 				F29971C61B8C4768003779AF /* PocketItemOperation.swift in Sources */,
+				7061462C1B9191FE008DB63A /* AppInfoTableViewController.swift in Sources */,
 				701CC4C61B882C300038394D /* UIAlertController.swift in Sources */,
 				F22BF42C1B8CA7A500505A92 /* NSDate.swift in Sources */,
 				F22BF4261B8C8C3A00505A92 /* BookmarkTableViewController.swift in Sources */,
 				F2D4E6B41B82ACD900D2B5BA /* SettingTableViewController.swift in Sources */,
+				70F5CFE01B92A78600135B75 /* IntroViewController.swift in Sources */,
 				F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */,
+				7061463C1B91F071008DB63A /* AppAboutViewController.swift in Sources */,
 				F22BF42A1B8C963000505A92 /* HatenaApiAccess.swift in Sources */,
 				F247BF111B8B42180051DCE8 /* ItemWebViewController.swift in Sources */,
+				7061462A1B9186A0008DB63A /* PocketConfigTableViewController.swift in Sources */,
 				F205F96E1B7CE5E400F949E3 /* PocketItem.swift in Sources */,
 				F2472A101B7D82D500B6B2A5 /* ItemListTableViewCell.swift in Sources */,
 				F2472A0E1B7D81F600B6B2A5 /* ItemListTableViewController.swift in Sources */,

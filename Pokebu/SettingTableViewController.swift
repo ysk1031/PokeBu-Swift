@@ -8,6 +8,7 @@
 
 import UIKit
 import HatenaBookmarkSDK
+import PocketAPI
 
 class SettingTableViewController: UITableViewController {
     let sectionNumber: Int = 2
@@ -60,6 +61,16 @@ class SettingTableViewController: UITableViewController {
     }
     
     func authorizePocket() {
+        if PocketAPI.sharedAPI().loggedIn {
+            performSegueWithIdentifier("PushPocketConfig", sender: nil)
+        } else {
+            PocketAPI.sharedAPI().loginWithHandler({ api, error in
+                if error != nil {
+                    let alertView = UIAlertController.setRequestFailureMessage(error.localizedDescription)
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                }
+            })
+        }
     }
     
     func authorizeHatenaBookmark() {
@@ -82,6 +93,7 @@ class SettingTableViewController: UITableViewController {
     }
     
     func showAppInformation() {
+        performSegueWithIdentifier("PushAppInfo", sender: nil)
     }
     
     func showHatenaOauthLoginView(notification: NSNotification) {
@@ -139,12 +151,9 @@ class SettingTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section < sectionNumber {
             let cell = tableView.dequeueReusableCellWithIdentifier("Setting", forIndexPath: indexPath)
-            if indexPath.section < sectionNumber {
-                let sectionName = sectionNames[indexPath.section]
-                if let menus = menusInSection[sectionName] {
-                    cell.textLabel?.text = menus[indexPath.row]
-                    cell.textLabel?.font = UIFont.systemFontOfSize(16.0)
-                }
+            let sectionName = sectionNames[indexPath.section]
+            if let menus = menusInSection[sectionName] {
+                cell.textLabel?.text = menus[indexPath.row]
             }
             return cell
         }

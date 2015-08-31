@@ -12,6 +12,8 @@ pod 'NJKWebViewProgress'
 pod 'DZNEmptyDataSet'
 pod 'SWTableViewCell'
 pod 'Parse'
+pod 'VTAcknowledgementsViewController'
+pod 'SVWebViewController'
 
 plugin 'cocoapods-keys', {
   project: 'Pokebu',

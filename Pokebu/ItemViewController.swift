@@ -39,6 +39,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     var apiAccess: PocketApiAccess = PocketApiAccess()
     var itemOperation: PocketItemOperation = PocketItemOperation()
     var bookmarkCount: Int = 0
+    var bookmarkCountFetchCompleteObserver: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +59,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self.item.BookmarkCountFetchCompleteNotification + "_\(self.item.id)"
-        )
+        NSNotificationCenter.defaultCenter().removeObserver(bookmarkCountFetchCompleteObserver!)
     }
     
     // MARK: - Application logic
@@ -145,7 +144,7 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     }
     
     func updateBookmarkCount() {
-        NSNotificationCenter.defaultCenter().addObserverForName(
+        bookmarkCountFetchCompleteObserver = NSNotificationCenter.defaultCenter().addObserverForName(
             item.BookmarkCountFetchCompleteNotification + "_\(item.id)",
             object: nil,
             queue: nil,

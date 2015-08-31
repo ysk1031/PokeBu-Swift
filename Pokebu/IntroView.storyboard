@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kgq-pQ-wO8">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+    </dependencies>
+    <scenes>
+        <!--Intro View Controller-->
+        <scene sceneID="lgm-eq-0Wj">
+            <objects>
+                <viewController id="kgq-pQ-wO8" customClass="IntroViewController" customModule="Pokebu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DGL-fz-T8a"/>
+                        <viewControllerLayoutGuide type="bottom" id="BJB-pb-sfk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4IV-qe-i6a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PokeBu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwR-PX-vAU">
+                                <rect key="frame" x="50" y="90" width="500" height="66"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-nK-Etr">
+                                <rect key="frame" x="30" y="176" width="540" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYb-KD-PuU">
+                                <rect key="frame" x="50" y="225" width="500" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Pocketでログイン">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="kgq-pQ-wO8" eventType="touchUpInside" id="3RA-Kg-6Xa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.30588235289999999" green="0.72156862749999995" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eYb-KD-PuU" firstAttribute="top" secondItem="1KE-nK-Etr" secondAttribute="bottom" constant="25" id="4NT-9K-Pgs"/>
+                            <constraint firstItem="eYb-KD-PuU" firstAttribute="leading" secondItem="4IV-qe-i6a" secondAttribute="leading" constant="50" id="7zC-zj-grB"/>
+                            <constraint firstAttribute="trailing" secondItem="eYb-KD-PuU" secondAttribute="trailing" constant="50" id="JE1-94-ERB"/>
+                            <constraint firstAttribute="trailing" secondItem="1KE-nK-Etr" secondAttribute="trailing" constant="30" id="gUq-T7-LYf"/>
+                            <constraint firstItem="iwR-PX-vAU" firstAttribute="leading" secondItem="4IV-qe-i6a" secondAttribute="leading" constant="50" id="ihQ-cd-prq"/>
+                            <constraint firstAttribute="trailing" secondItem="iwR-PX-vAU" secondAttribute="trailing" constant="50" id="j5R-65-ppw"/>
+                            <constraint firstItem="iwR-PX-vAU" firstAttribute="top" secondItem="DGL-fz-T8a" secondAttribute="bottom" constant="70" id="kWr-AD-kGx"/>
+                            <constraint firstItem="1KE-nK-Etr" firstAttribute="leading" secondItem="4IV-qe-i6a" secondAttribute="leading" constant="30" id="tqq-yL-vKM"/>
+                            <constraint firstItem="1KE-nK-Etr" firstAttribute="top" secondItem="iwR-PX-vAU" secondAttribute="bottom" constant="20" id="zDo-6C-1P9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appDescription" destination="1KE-nK-Etr" id="eAE-1v-8mq"/>
+                        <outlet property="appName" destination="iwR-PX-vAU" id="JqF-eZ-n60"/>
+                        <outlet property="loginButton" destination="eYb-KD-PuU" id="ggz-km-u3p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G6b-7X-tUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="418"/>
+        </scene>
+    </scenes>
+</document>
