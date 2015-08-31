@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Push設定
         registerPushNotification(application, launchOptions: launchOptions)
         
-        
         // Pocketログイン状態の確認
         if PocketAPI.sharedAPI().loggedIn {
         } else {
@@ -62,6 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         initHatenaBookmarkSdk()
+        
+        // バッジ数のリセット
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        if (currentInstallation.badge > 0) {
+            currentInstallation.badge = 0
+            currentInstallation.saveEventually(nil)
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
