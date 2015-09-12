@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (2.0.0-beta.3)
-  - DateTools (1.6.1)
+  - Alamofire (2.0.0)
+  - DateTools (1.7.0)
   - DZNEmptyDataSet (1.7.1)
   - HatenaBookmarkSDK (1.2):
     - SFHFKeychainUtils
@@ -19,10 +19,10 @@ PODS:
   - SwiftyJSON (2.2.1)
   - SWTableViewCell (0.3.7)
   - TTTAttributedLabel (1.13.4)
-  - VTAcknowledgementsViewController (0.14)
+  - VTAcknowledgementsViewController (0.15)
 
 DEPENDENCIES:
-  - Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - Alamofire (from `git@github.com:Alamofire/Alamofire.git`)
   - DateTools
   - DZNEmptyDataSet
   - HatenaBookmarkSDK (from `git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git`)
@@ -38,7 +38,6 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Alamofire:
-    :branch: swift-2.0
     :git: git@github.com:Alamofire/Alamofire.git
   HatenaBookmarkSDK:
     :git: git@github.com:hatena/Hatena-Bookmark-iOS-SDK.git
@@ -52,7 +51,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 6a4e014844c6309040f49ec00fe1e7d356ab5ff5
+    :commit: 689c9e871bbc200922fb89b0d2c06e4286ae5059
     :git: git@github.com:Alamofire/Alamofire.git
   HatenaBookmarkSDK:
     :commit: 9f6af4ea96f63f0d08b757c1fdf58c432e3f6168
@@ -61,12 +60,12 @@ CHECKOUT OPTIONS:
     :commit: 47ffff591a02f780f1928e3fba10e0f7f68cf132
     :git: git@github.com:Pocket/Pocket-ObjC-SDK.git
   SwiftyJSON:
-    :commit: f269523ac572979245baa99c8475eab73caf1e9b
+    :commit: d4df13c66146a8e9c8d96c852746a08363003d36
     :git: git@github.com:SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
-  DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
+  Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   HatenaBookmarkSDK: 832cad8358ab6cf246ca1aa3e3ca6e6df7e78eb4
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
@@ -78,6 +77,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  VTAcknowledgementsViewController: 11a869dd69598a852f12699aeaf36e2589d3fc1b
+  VTAcknowledgementsViewController: 575f5841fb47b7d9c852ccb406104ea68de07b21
 
 COCOAPODS: 0.38.2
