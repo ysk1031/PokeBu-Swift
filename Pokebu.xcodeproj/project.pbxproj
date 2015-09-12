@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6FFD3B98CC0D79C804C8A69F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97D44F310E211F734D18E1C /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		700FFC5D1BA3E37F0089C778 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700FFC5C1BA3E37F0089C778 /* UIColor.swift */; settings = {ASSET_TAGS = (); }; };
 		701CC4C61B882C300038394D /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CC4C51B882C300038394D /* UIAlertController.swift */; };
 		70326C6B1B7BA65700B1790E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70326C6A1B7BA65700B1790E /* AppDelegate.swift */; };
 		70326C701B7BA65700B1790E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70326C6E1B7BA65700B1790E /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		700FFC5C1BA3E37F0089C778 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		701CC4C51B882C300038394D /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		70326C671B7BA65700B1790E /* Pokebu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokebu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70326C6A1B7BA65700B1790E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,11 +126,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		700FFC5E1BA40AA40089C778 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				700FFC601BA40F720089C778 /* Bookmark */,
+				70F5CFDE1B92A5D100135B75 /* Introduction */,
+				F2E171C41B7CC0100016F8E9 /* PocketItem */,
+				F2D4E6B21B82ACA100D2B5BA /* Setting */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		700FFC5F1BA40AE80089C778 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F2BB2D2F1B8CAC2D00FABB42 /* BookmarkTableViewCell.swift */,
+				F2472A0F1B7D82D500B6B2A5 /* ItemListTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		700FFC601BA40F720089C778 /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				F22BF4251B8C8C3A00505A92 /* BookmarkTableViewController.swift */,
+			);
+			name = Bookmark;
+			sourceTree = "<group>";
+		};
 		701CC4C41B882C0A0038394D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				F22BF42B1B8CA7A500505A92 /* NSDate.swift */,
 				701CC4C51B882C300038394D /* UIAlertController.swift */,
+				700FFC5C1BA3E37F0089C778 /* UIColor.swift */,
 				F21143761B8D6CED0059101B /* UILabel.swift */,
 			);
 			name = Extension;
@@ -161,18 +192,16 @@
 			children = (
 				70326C6A1B7BA65700B1790E /* AppDelegate.swift */,
 				70326C711B7BA65700B1790E /* Assets.xcassets */,
-				F22BF4241B8C8A5700505A92 /* Bookmark */,
 				70F5CFE11B92B27300135B75 /* CustomUiApplication.swift */,
 				701CC4C41B882C0A0038394D /* Extension */,
 				70326C761B7BA65700B1790E /* Info.plist */,
-				70F5CFDE1B92A5D100135B75 /* Introduction */,
 				70F5CFDC1B92A5C400135B75 /* IntroView.storyboard */,
 				70326C731B7BA65700B1790E /* LaunchScreen.storyboard */,
 				70326C6E1B7BA65700B1790E /* Main.storyboard */,
 				F205F96C1B7CE5C600F949E3 /* Model */,
-				F2E171C41B7CC0100016F8E9 /* PocketItem */,
 				706146391B91CA2C008DB63A /* Pods-acknowledgements.plist */,
-				F2D4E6B21B82ACA100D2B5BA /* Setting */,
+				700FFC5F1BA40AE80089C778 /* View */,
+				700FFC5E1BA40AA40089C778 /* ViewController */,
 			);
 			path = Pokebu;
 			sourceTree = "<group>";
@@ -232,15 +261,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		F22BF4241B8C8A5700505A92 /* Bookmark */ = {
-			isa = PBXGroup;
-			children = (
-				F2BB2D2F1B8CAC2D00FABB42 /* BookmarkTableViewCell.swift */,
-				F22BF4251B8C8C3A00505A92 /* BookmarkTableViewController.swift */,
-			);
-			name = Bookmark;
-			sourceTree = "<group>";
-		};
 		F2D4E6B21B82ACA100D2B5BA /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +276,6 @@
 		F2E171C41B7CC0100016F8E9 /* PocketItem */ = {
 			isa = PBXGroup;
 			children = (
-				F2472A0F1B7D82D500B6B2A5 /* ItemListTableViewCell.swift */,
 				F2472A0D1B7D81F600B6B2A5 /* ItemListTableViewController.swift */,
 				F2D4E6B51B82B6F900D2B5BA /* ItemViewController.swift */,
 				F247BF101B8B42180051DCE8 /* ItemWebViewController.swift */,
@@ -457,6 +476,7 @@
 				F22BF42C1B8CA7A500505A92 /* NSDate.swift in Sources */,
 				F22BF4261B8C8C3A00505A92 /* BookmarkTableViewController.swift in Sources */,
 				F2D4E6B41B82ACD900D2B5BA /* SettingTableViewController.swift in Sources */,
+				700FFC5D1BA3E37F0089C778 /* UIColor.swift in Sources */,
 				70F5CFE01B92A78600135B75 /* IntroViewController.swift in Sources */,
 				F205F9701B7CE84200F949E3 /* PocketApiAccess.swift in Sources */,
 				7061463C1B91F071008DB63A /* AppAboutViewController.swift in Sources */,
@@ -560,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -598,7 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

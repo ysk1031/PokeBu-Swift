@@ -22,10 +22,12 @@ class IntroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNeedsStatusBarAppearanceUpdate()
+        
         appDescription.text = "Pocketに保存した記事のリーダーです。\n\n" +
             "保存してある未読記事を消化・アーカイブしながら、" +
             "はてなブックマークのコメントを閲覧したり、ブックマーク追加したりできます。"
-        let greenColor = UIColor(red: 0.306, green: 0.722, blue: 0.698, alpha: 1.0)
+        let greenColor = UIColor.themeColorGreen()
         appName.textColor = greenColor
         appDescription.textColor = greenColor
         loginButton.setTitleColor(greenColor, forState: UIControlState.Normal)
@@ -50,6 +52,11 @@ class IntroViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        // ステータスバーの色を白に
+        return UIStatusBarStyle.LightContent
     }
     
     // MARK: - Application logic
@@ -77,7 +84,7 @@ class IntroViewController: UIViewController {
         } else {
             let webViewController: SVWebViewController = SVWebViewController(address: url.absoluteString)
             let navigationController: UINavigationController = UINavigationController(rootViewController: webViewController)
-            navigationController.navigationBar.barTintColor = UIColor(red:0.306, green:0.722, blue:0.698, alpha:1.0)
+            navigationController.navigationBar.barTintColor = UIColor.themeColorGreen()
             navigationController.navigationBar.tintColor = UIColor.whiteColor()
             navigationController.navigationBar.translucent = false
             navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]

@@ -11,9 +11,9 @@ import TTTAttributedLabel
 import SDWebImage
 import DateTools
 import HatenaBookmarkSDK
-//import SafariServices
+import SafariServices
 
-class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
+class ItemViewController: UIViewController, TTTAttributedLabelDelegate, SFSafariViewControllerDelegate {
     @IBOutlet weak var favicon: UIImageView!
     @IBOutlet weak var itemTitle: TTTAttributedLabel!
     @IBOutlet weak var excerpt: UILabel!
@@ -74,10 +74,10 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
         // 記事タイトル
         itemTitle.setText(item.title)
         itemTitle.linkAttributes = [
-            kCTForegroundColorAttributeName : UIColor(red: 0.314, green: 0.737, blue: 0.714, alpha: 1.0),
+            kCTForegroundColorAttributeName : UIColor.themeColorLightGreen(),
             NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleNone.rawValue)
         ]
-        itemTitle.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor(red: 0.929, green: 0.251, blue: 0.333, alpha: 1.0)]
+        itemTitle.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor.themeColorRed()]
         let titleRange: NSRange = (item.title as NSString).rangeOfString(item.title)
         itemTitle.addLinkToURL(NSURL(string: encodedUrl!), withRange: titleRange)
         
@@ -173,14 +173,18 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate {
     // MARK: - TTTAttributedLabel delegate
     
     func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!) {
-        performSegueWithIdentifier("PushItemWebView", sender: url)
+        // performSegueWithIdentifier("PushItemWebView", sender: url)
         
-//        if #available(iOS 9.0, *) {
-//            let safariViewController: SFSafariViewController = SFSafariViewController(URL: url)
-//            presentViewController(safariViewController, animated: true, completion: nil)
-//        } else {
-            // Fallback on earlier versions
-//        }
+        let safariViewController: SFSafariViewController = SFSafariViewController(URL: url)
+        safariViewController.delegate = self
+        presentViewController(safariViewController, animated: true, completion: nil)
+    }
+    
+    // MARK: - SFSafariViewController delegate
+    
+    func safariViewController(controller: SFSafariViewController, activityItemsForURL URL: NSURL, title: String?) -> [UIActivity] {
+        let hatenaBookmarkActivity: HTBHatenaBookmarkActivity = HTBHatenaBookmarkActivity()
+        return [hatenaBookmarkActivity]
     }
     
     // MARK: - IBAction

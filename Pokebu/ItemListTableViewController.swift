@@ -22,6 +22,9 @@ class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FIX: ステータスバーの文字を白に
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
         addNotificationObservers()
         
         let refreshControl = UIRefreshControl()
@@ -158,7 +161,7 @@ class ItemListTableViewController: UITableViewController, DZNEmptyDataSetSource,
     
     func cellRightButtons() -> NSArray {
         let buttons: NSMutableArray = []
-        buttons.sw_addUtilityButtonWithColor(UIColor(red: 0.929, green: 0.251, blue: 0.333, alpha: 1.0), title: "Archive")
+        buttons.sw_addUtilityButtonWithColor(UIColor.themeColorRed(), title: "Archive")
         return buttons
     }
     

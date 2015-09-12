@@ -21,6 +21,9 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FIX: ステータスバーの文字を白に
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
         showIndicator()
         tableView.allowsSelection = false
         

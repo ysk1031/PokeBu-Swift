@@ -30,6 +30,9 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FIX: ステータスバーの文字を白に
+        navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
         setStyleForHatenaOauthLoginNavigationBar()
 
         // Uncomment the following line to preserve selection between presentations
@@ -48,16 +51,13 @@ class SettingTableViewController: UITableViewController {
     
     func setStyleForHatenaOauthLoginNavigationBar() {
         hatenaOauthLoginNavigationController.navigationBar.translucent = false
-        hatenaOauthLoginNavigationController.navigationBar.barTintColor = UIColor(
-            red: 0.306,
-            green: 0.722,
-            blue: 0.698,
-            alpha: 1.0
-        )
+        hatenaOauthLoginNavigationController.navigationBar.barTintColor = UIColor.themeColorGreen()
         hatenaOauthLoginNavigationController.navigationBar.tintColor = UIColor.whiteColor()
         hatenaOauthLoginNavigationController.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
+        // FIX: ステータスバーの文字を白に
+        hatenaOauthLoginNavigationController.navigationBar.barStyle = UIBarStyle.Black
     }
     
     func authorizePocket() {
