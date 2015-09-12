@@ -8,6 +8,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import SafariServices
 
 class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     let baseCellHeight: CGFloat = 68.0
@@ -25,7 +26,6 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
         navigationController?.navigationBar.barStyle = UIBarStyle.Black
         
         showIndicator()
-        tableView.allowsSelection = false
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
@@ -102,6 +102,14 @@ class BookmarkTableViewController: UITableViewController, DZNEmptyDataSetSource,
     
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return baseCellHeight
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let bookmark: HatenaBookmark = apiAccess.bookmarks[indexPath.row]
+        let url: NSURL = NSURL(string: "http://b.hatena.ne.jp/\(bookmark.userName!)/touch")!
+        let safariViewController: SFSafariViewController = SFSafariViewController(URL: url)
+        presentViewController(safariViewController, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
