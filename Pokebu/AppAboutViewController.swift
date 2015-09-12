@@ -19,8 +19,7 @@ class AppAboutViewController: UIViewController {
             "未読記事を消化・アーカイブしながら、はてなブックマークのコメントを閲覧したり、ブックマーク追加したりできます。\n\n" +
             "自分がよくやっている「Twitterで流れる情報をいったんPocketに保存 => 読了後、" +
             "はてブ追加・記事のアーカイブ」という作業の流れを、モバイル端末でもスムーズに行いたいと思って作りました。\n\n" +
-            "元々はNaoya Itoさん作のiOSアプリ「HBFav2」を参考にしたRubyMotion製のアプリでしたが、" +
-            "バージョン1.1からSwiftで書き直しています。\n\n" +
+            "元々はRubyMotion製のアプリでしたが、バージョン1.1からSwiftで書き直しています。\n\n" +
             "(c) 2015 Yusuke Aono"
         developer.text = "Twitter: @ysk_aono\n" +
             "GitHub: ysk1031"
