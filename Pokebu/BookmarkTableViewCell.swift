@@ -20,6 +20,8 @@ class BookmarkTableViewCell: UITableViewCell {
             
             icon.sd_setImageWithURL(NSURL(string: (bookmark?.userImage)!))
             icon.layer.cornerRadius = 24.0
+            icon.layer.borderColor = UIColor.lightGrayColor().CGColor
+            icon.layer.borderWidth = 0.5
             userName.text = bookmark?.userName
             addedTime.text = bookmark?.addedTime?.timeAgoSinceNow()
             comment.text = bookmark?.comment

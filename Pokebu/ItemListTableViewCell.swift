@@ -19,9 +19,12 @@ class ItemListTableViewCell: SWTableViewCell {
         didSet {
             if item == nil { return }
             
-            itemTitle.text = item!.title
-            
             let encodedUrl: String? = item!.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            if item?.title != "" {
+                itemTitle.text = item!.title
+            } else {
+                itemTitle.text = encodedUrl
+            }
             let domain = NSURL(string: encodedUrl!)?.host
             urlHost.text = domain
             

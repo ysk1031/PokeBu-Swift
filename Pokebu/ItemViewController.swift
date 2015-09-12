@@ -72,13 +72,19 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate, SFSafari
         )
         
         // 記事タイトル
-        itemTitle.setText(item.title)
+        var displayTitle: String
+        if item.title != "" {
+            displayTitle = item.title
+        } else {
+            displayTitle = encodedUrl!
+        }
+        itemTitle.setText(displayTitle)
         itemTitle.linkAttributes = [
             kCTForegroundColorAttributeName : UIColor.themeColorLightGreen(),
             NSUnderlineStyleAttributeName : NSNumber(integer: NSUnderlineStyle.StyleNone.rawValue)
         ]
         itemTitle.activeLinkAttributes = [kCTForegroundColorAttributeName : UIColor.themeColorRed()]
-        let titleRange: NSRange = (item.title as NSString).rangeOfString(item.title)
+        let titleRange: NSRange = (displayTitle as NSString).rangeOfString(displayTitle)
         itemTitle.addLinkToURL(NSURL(string: encodedUrl!), withRange: titleRange)
         
         // 抜粋
