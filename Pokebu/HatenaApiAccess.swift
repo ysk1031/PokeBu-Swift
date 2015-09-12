@@ -27,8 +27,8 @@ class HatenaApiAccess {
             completionHandler: { request, response, data, error in
                 if error != nil {
                     var message = "不明なエラーが発生しました。"
-                    if let description = error?.localizedDescription {
-                        message = description
+                    if let error = error as? NSError {
+                        message = error.localizedDescription
                     }
                     NSNotificationCenter.defaultCenter().postNotificationName(
                         self.HAAFetchCompleteNotification + "_\(url)",

@@ -54,8 +54,8 @@ class PocketApiAccess {
         Alamofire.request(.GET, methodUrl, parameters: requestParams).response { (request, response, data, error) in
             if error != nil {
                 var message = "不明なエラーが発生しました。"
-                if let description = error?.localizedDescription {
-                    message = description
+                if let error = error as? NSError {
+                    message = error.localizedDescription
                 }
                 // エラーで読み込み終了
                 self.fetching = false
@@ -157,8 +157,8 @@ class PocketApiAccess {
             request, response, data, error in
             if error != nil {
                 var message = "不明なエラーが発生しました。"
-                if let description = error?.localizedDescription {
-                    message = description
+                if let error = error as? NSError {
+                    message = error.localizedDescription
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName(self.PAAArchiveCompletionNotification,
                     object: nil,
