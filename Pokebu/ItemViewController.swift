@@ -17,16 +17,11 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate, SFSafari
     @IBOutlet weak var favicon: UIImageView!
     @IBOutlet weak var itemTitle: TTTAttributedLabel!
     @IBOutlet weak var excerpt: UILabel!
-    @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var url: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var bookmarkViewButton: UIButton!
     
     @IBOutlet weak var excerptLeftMargin: NSLayoutConstraint!
-    @IBOutlet weak var photoWidth: NSLayoutConstraint!
-    @IBOutlet weak var photoHeight: NSLayoutConstraint!
-    @IBOutlet weak var photoLeftMargin: NSLayoutConstraint!
-    @IBOutlet weak var photoRightMargin: NSLayoutConstraint!
     @IBOutlet weak var urlTopMargin: NSLayoutConstraint!
     
     var encodedUrl: String?
@@ -89,31 +84,6 @@ class ItemViewController: UIViewController, TTTAttributedLabelDelegate, SFSafari
         
         // 抜粋
         excerpt.text = item.excerpt
-        
-        // 写真
-        if let imageUrl = item.imgSrc {
-            let encodedImageUrl: String? = imageUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            photo.sd_setImageWithURL(NSURL(string: encodedImageUrl!))
-        }
-        
-        // 写真がない時のAutoLayoutの値を変更
-        if item.imgSrc == nil {
-            photoWidth.constant = 0
-            photoHeight.constant = 0
-            photoRightMargin.constant = 0
-        }
-        
-        // excerptラベルの高さ算出
-        let excerptLabelHeight: CGFloat = UILabel.heightForLabelText(excerpt.text!,
-            font: excerpt.font,
-            width: view.bounds.size.width - excerptLeftMargin.constant -
-                (photoLeftMargin.constant + photoWidth.constant + photoRightMargin.constant)
-        )
-        
-        // 写真があってexcerptラベルの高さが写真より低い時は、urlの表示位置を変更
-        if item.imgSrc != nil && excerptLabelHeight < photo.frame.size.height {
-            urlTopMargin.constant = 10 + photo.frame.size.height - excerptLabelHeight
-        }
         
         // URL
         url.text = item.url
