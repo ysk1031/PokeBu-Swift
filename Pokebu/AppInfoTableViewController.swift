@@ -65,13 +65,9 @@ class AppInfoTableViewController: UITableViewController, SFSafariViewControllerD
     }
     
     func openUrl(url: NSURL) {
-        if #available(iOS 9.0, *) {
-            let safariViewController = SFSafariViewController(URL: url)
-            safariViewController.delegate = self
-            presentViewController(safariViewController, animated: true, completion: nil)
-        } else {
-            UIApplication.sharedApplication().openURL(url)
-        }
+        let safariViewController = SFSafariViewController(URL: url)
+        safariViewController.delegate = self
+        presentViewController(safariViewController, animated: true, completion: nil)
     }
     
     func showMyBlog() {
@@ -81,9 +77,8 @@ class AppInfoTableViewController: UITableViewController, SFSafariViewControllerD
     
     
     func showAppStore() {
-        // FIX: 実機で試す
-//        let url: NSURL = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=981124596")!
-//        UIApplication.sharedApplication().openURL(url)
+        let url: NSURL = NSURL(string: "https://geo.itunes.apple.com/jp/app/pokebu/id981124596?mt=8")!
+        UIApplication.sharedApplication().openURL(url)
     }
     
     func showGithub() {

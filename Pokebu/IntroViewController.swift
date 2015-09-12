@@ -8,7 +8,6 @@
 
 import UIKit
 import PocketAPI
-import SVWebViewController
 import SafariServices
 
 class IntroViewController: UIViewController {
@@ -77,19 +76,8 @@ class IntroViewController: UIViewController {
     
     func openPocketLoginScreenBy(notification: NSNotification) {
         let url: NSURL = notification.object as! NSURL
-        
-        if #available(iOS 9.0, *) {
-            let safariViewController: SFSafariViewController = SFSafariViewController(URL: url)
-            presentViewController(safariViewController, animated: true, completion: nil)
-        } else {
-            let webViewController: SVWebViewController = SVWebViewController(address: url.absoluteString)
-            let navigationController: UINavigationController = UINavigationController(rootViewController: webViewController)
-            navigationController.navigationBar.barTintColor = UIColor.themeColorGreen()
-            navigationController.navigationBar.tintColor = UIColor.whiteColor()
-            navigationController.navigationBar.translucent = false
-            navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-            presentViewController(navigationController, animated: true, completion: nil)
-        }
+        let safariViewController: SFSafariViewController = SFSafariViewController(URL: url)
+        presentViewController(safariViewController, animated: true, completion: nil)
     }
     
     // MARK: - IBAction
